@@ -244,6 +244,7 @@
         .step {
             display: none;
             animation: fadeUp 0.45s var(--ease) forwards;
+            position: relative; /* For tour guide positioning */
         }
 
         .step.active { display: block; }
@@ -629,6 +630,19 @@
             transform: scale(1.05);
         }
 
+        /* Tour Guide Hover Simulation */
+        .color-pill-label.tour-hover {
+            border-color: var(--pink-300);
+            background: rgba(252, 231, 243, 0.45);
+            transform: translateY(-2px);
+            animation: pulsePill 1s ease-in-out infinite;
+        }
+
+        @keyframes pulsePill {
+            0%, 100% { transform: scale(1) translateY(-2px); }
+            50% { transform: scale(1.05) translateY(-4px); }
+        }
+
         .swatch {
             width: 22px; height: 22px;
             border-radius: 50%;
@@ -936,273 +950,83 @@
             font-size: 0.78rem;
         }
 
-        /* ================= SETUP TUTORIAL OVERLAY ================= */
-        .setup-overlay {
+        /* ================= INTERACTIVE TOUR GUIDE ================= */
+        .tour-guide {
             position: fixed;
-            inset: 0;
-            background: rgba(45, 27, 51, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+        }
+
+        .tour-guide.visible {
+            opacity: 1;
+        }
+
+        .tour-bubble {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: overlayIn 0.5s var(--ease);
+            gap: 10px;
+            pointer-events: auto;
+            max-width: 220px;
         }
 
-        .setup-overlay.hiding {
-            animation: overlayOut 0.4s var(--ease) forwards;
+        .tour-bubble::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 8px 8px 0;
+            border-style: solid;
+            border-color: transparent var(--text-dark) transparent transparent;
         }
 
-        @keyframes overlayIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .tour-bubble::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 8px 8px 0;
+            border-style: solid;
+            border-color: transparent var(--text-dark) transparent transparent;
         }
 
-        @keyframes overlayOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
+        .tour-hand {
+            font-size: 1.4rem;
+            line-height: 1;
+            animation: waveHand 0.8s ease-in-out infinite alternate;
         }
 
-        .setup-modal {
-            background: var(--white);
-            border-radius: 24px;
-            max-width: 560px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 36px 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: modalSlide 0.5s var(--ease);
+        @keyframes waveHand {
+            0% { transform: rotate(-10deg) translateX(-2px); }
+            100% { transform: rotate(10deg) translateX(2px); }
         }
 
-        @keyframes modalSlide {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .setup-modal h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            text-align: center;
-            margin-bottom: 6px;
-            background: linear-gradient(135deg, var(--pink-500), var(--lav-500));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .setup-modal .setup-sub {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-bottom: 24px;
-        }
-
-        .setup-step-list {
-            list-style: none;
-            margin: 0 0 24px;
-        }
-
-        .setup-step-item {
-            display: flex;
-            gap: 14px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(233, 213, 255, 0.3);
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: stepSlideIn 0.5s var(--ease) forwards;
-        }
-
-        .setup-step-item:last-child { border-bottom: none; }
-
-        .setup-step-item:nth-child(1) { animation-delay: 0.2s; }
-        .setup-step-item:nth-child(2) { animation-delay: 0.4s; }
-        .setup-step-item:nth-child(3) { animation-delay: 0.6s; }
-        .setup-step-item:nth-child(4) { animation-delay: 0.8s; }
-        .setup-step-item:nth-child(5) { animation-delay: 1.0s; }
-
-        @keyframes stepSlideIn {
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .setup-step-num {
-            width: 32px;
-            height: 32px;
+        .tour-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            background: var(--pink-500);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
             color: white;
             display: grid;
             place-items: center;
-            font-size: 0.82rem;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .setup-step-content h4 {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: var(--text-dark);
-        }
-
-        .setup-step-content p {
-            font-size: 0.83rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .setup-code-block {
-            background: linear-gradient(135deg, #1e1b2e, #2d1b33);
-            border-radius: 12px;
-            padding: 16px 18px;
-            margin: 8px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.78rem;
-            color: #f9a8d4;
-            position: relative;
-            overflow-x: auto;
-            word-break: break-all;
-            line-height: 1.6;
-        }
-
-        .setup-code-block .code-label {
-            display: block;
-            font-size: 0.68rem;
-            color: #a89aae;
-            margin-bottom: 6px;
-            font-family: 'Quicksand', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .setup-code-block .highlight {
-            color: #86efac;
-            font-weight: 700;
-        }
-
-        .setup-code-block .comment {
-            color: #7c6c82;
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: #f472b6;
-            margin-left: 2px;
-            animation: blink 0.8s step-end infinite;
-            vertical-align: text-bottom;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .setup-demo-url {
-            background: linear-gradient(135deg, rgba(252, 231, 243, 0.6), rgba(243, 232, 255, 0.6));
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .setup-demo-url .url-parts {
-            font-family: 'Courier New', monospace;
-            font-size: 0.82rem;
-            word-break: break-all;
-        }
-
-        .setup-demo-url .url-fixed {
-            color: var(--text-muted);
-        }
-
-        .setup-demo-url .url-email {
-            color: var(--pink-600);
-            font-weight: 700;
-            position: relative;
-        }
-
-        .setup-demo-url .url-email.animating::after {
-            content: '';
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: var(--pink-500);
-            margin-left: 1px;
-            animation: blink 0.7s step-end infinite;
-            vertical-align: text-bottom;
-        }
-
-        .setup-warning {
-            background: linear-gradient(135deg, #fef3c7, #fef9c3);
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin: 12px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.82rem;
-            color: #92400e;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .setup-warning .warn-icon { font-size: 1.1rem; flex-shrink: 0; }
-
-        .setup-btn-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 22px;
-        }
-
-        .setup-btn {
-            flex: 1;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .setup-btn-primary {
-            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
-            color: white;
-            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.28);
-        }
-
-        .setup-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(236, 72, 153, 0.35);
-        }
-
-        .setup-btn-ghost {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--text-muted);
-            border: 2px solid var(--pink-200);
-        }
-
-        .setup-btn-ghost:hover {
-            border-color: var(--pink-400);
-            color: var(--pink-500);
-        }
-
-        /* Animated file/image tutorial */
-        .setup-file-note {
-            background: linear-gradient(135deg, rgba(134, 239, 172, 0.15), rgba(134, 239, 172, 0.05));
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin: 10px 0;
-            font-size: 0.82rem;
-            color: #166534;
-            border: 1px solid rgba(134, 239, 172, 0.3);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            pointer-events: auto;
         }
 
         @media (max-width: 600px) {
@@ -1220,92 +1044,26 @@
             .btns { flex-direction: column-reverse; }
             .step-title { font-size: 1.28rem; }
             .pay-tabs { flex-direction: column; align-items: center; }
-            .setup-modal { padding: 26px 20px; }
-            .setup-modal h2 { font-size: 1.35rem; }
             .group-qr-box { width: 180px; height: 180px; }
+            
+            /* Mobile adjustments for guide */
+            .tour-bubble::after {
+                left: 50%;
+                top: auto;
+                bottom: -8px;
+                transform: translateX(-50%) rotate(90deg);
+            }
+            .tour-bubble::before {
+                 left: 50%;
+                top: auto;
+                bottom: -8px;
+                transform: translateX(-50%) rotate(90deg);
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- =================== SETUP TUTORIAL OVERLAY =================== -->
-    <div class="setup-overlay" id="setupOverlay">
-        <div class="setup-modal">
-            <h2>⚙️ Quick Setup Guide</h2>
-            <p class="setup-sub">Follow these steps to connect this form to your email</p>
-
-            <ol class="setup-step-list">
-                <li class="setup-step-item">
-                    <div class="setup-step-num">1</div>
-                    <div class="setup-step-content">
-                        <h4>🔍 Find the Email Variable</h4>
-                        <p>Open this HTML file in a code editor. Look for this line near the bottom in the <code>&lt;script&gt;</code> section:</p>
-                        <div class="setup-code-block">
-                            <span class="code-label">📄 Line to find:</span>
-                            <span class="comment">// ⚠️ REPLACE THIS WITH YOUR ACTUAL EMAIL</span><br>
-                            const FORM_EMAIL = '<span class="highlight" id="typingEmail"></span><span class="typing-cursor"></span>';
-                        </div>
-                    </div>
-                </li>
-
-                <li class="setup-step-item">
-                    <div class="setup-step-num">2</div>
-                    <div class="setup-step-content">
-                        <h4>✏️ Replace with Your Email</h4>
-                        <p>Change the email to the address where you want to receive registrations:</p>
-                        <div class="setup-demo-url">
-                            <div class="url-parts">
-                                <span class="url-fixed">const FORM_EMAIL = '</span><span class="url-email" id="demoEmail">your@email.com</span><span class="url-fixed">';</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="setup-step-item">
-                    <div class="setup-step-num">3</div>
-                    <div class="setup-step-content">
-                        <h4>📸 Add Your QR Code Images</h4>
-                        <p>Replace the placeholder images with your actual payment QR codes:</p>
-                        <div class="setup-code-block">
-                            <span class="code-label">📄 Payment QR files needed:</span>
-                            <span class="highlight">wechat-qr.png</span> <span class="comment">← Your WeChat Pay QR</span><br>
-                            <span class="highlight">alipay-qr.png</span> <span class="comment">← Your Alipay QR</span><br>
-                            <span class="highlight">group-qr.png</span> <span class="comment">← Your Group Chat QR</span>
-                        </div>
-                        <div class="setup-file-note">
-                            💡 Place these image files in the <strong>same folder</strong> as this HTML file. Or use full URLs like <code>https://your-site.com/qr.png</code>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="setup-step-item">
-                    <div class="setup-step-num">4</div>
-                    <div class="setup-step-content">
-                        <h4>📧 Confirm Your Email</h4>
-                        <p>The first time someone submits the form, <strong>FormSubmit.co</strong> will send a confirmation email to your address. Click the link to activate.</p>
-                    </div>
-                </li>
-
-                <li class="setup-step-item">
-                    <div class="setup-step-num">5</div>
-                    <div class="setup-step-content">
-                        <h4>🚀 You're Live!</h4>
-                        <p>After confirmation, all registrations will arrive directly in your inbox with a beautiful table layout. Share your page link!</p>
-                    </div>
-                </li>
-            </ol>
-
-            <div class="setup-warning">
-                <span class="warn-icon">⚠️</span>
-                <span>This tutorial will only show <strong>once</strong>. You can re-enable it by clearing <code>localStorage</code> in your browser, or by removing the <code>setupDone</code> key.</span>
-            </div>
-
-            <div class="setup-btn-row">
-                <button class="setup-btn setup-btn-ghost" onclick="skipSetup()">Skip for Now</button>
-                <button class="setup-btn setup-btn-primary" onclick="dismissSetup()">Got It, Let's Go! 🌸</button>
-            </div>
-        </div>
-    </div>
 
     <div class="bg-deco">
         <div class="bg-circle"></div>
@@ -1315,6 +1073,15 @@
     </div>
 
     <div class="toast" id="toast"></div>
+
+    <!-- INTERACTIVE TOUR GUIDE ELEMENT -->
+    <div id="tourGuide" class="tour-guide">
+        <div class="tour-bubble">
+            <span class="tour-hand">👉</span>
+            <span id="tourText">Hello there!</span>
+            <div class="tour-close" onclick="endTour()">✕</div>
+        </div>
+    </div>
 
     <div class="container">
 
@@ -1432,7 +1199,7 @@
                     </div>
                 </div>
 
-                <!-- ===================== STEP 2 : STYLE & VIBE ===================== -->
+                <!-- ===================== STEP 2 : STYLE & VIBE (With Tutorial) ===================== -->
                 <div class="step" data-step="2">
                     <span class="step-emoji">👗</span>
                     <h2 class="step-title">Your Style &amp; Vibe</h2>
@@ -1440,7 +1207,7 @@
 
                     <div class="fg">
                         <label>Preferred Zumba Music Type <span class="req">*</span></label>
-                        <select class="fs" name="zumba_music" required>
+                        <select class="fs" name="zumba_music" id="tourMusicSelect" required>
                             <option value="" disabled selected>Choose your vibe ♪</option>
                             <option value="Latin">💃 Latin (Reggaeton, Salsa)</option>
                             <option value="Afrobeats">🌍 Afrobeats</option>
@@ -1455,10 +1222,10 @@
 
                     <div class="fg">
                         <label>Colour of Your Yoga Pants <span class="req">*</span></label>
-                        <div class="color-pills">
+                        <div class="color-pills" id="tourColorContainer">
                             <div class="color-pill">
                                 <input type="radio" id="cpPink" name="yoga_pants_color" value="Pink" required>
-                                <label class="color-pill-label" for="cpPink">
+                                <label class="color-pill-label" for="cpPink" id="tourPinkPill">
                                     <span class="swatch swatch-pink"></span> Pink
                                 </label>
                             </div>
@@ -1483,7 +1250,7 @@
 
                     <div class="fg">
                         <label>What Do You Plan to Wear?</label>
-                        <textarea class="ft" name="outfit_plan" placeholder="e.g. Pink yoga pants with a white sports bra and white sneakers 👟" rows="3"></textarea>
+                        <textarea class="ft" name="outfit_plan" id="tourOutfitArea" placeholder="e.g. Pink yoga pants with a white sports bra and white sneakers 👟" rows="3"></textarea>
                     </div>
 
                     <div class="reminder">
@@ -1797,101 +1564,11 @@
     const ICONS = ['🏠','👤','👗','🧘','🎯','💳','✅'];
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Check if setup tutorial was already shown
-        if (localStorage.getItem('bloomSetupDone')) {
-            document.getElementById('setupOverlay').remove();
-        } else {
-            runSetupAnimations();
-        }
-
         drawProgress();
         initSlider();
         initUpload();
         spawnPetals();
     });
-
-    // ================= SETUP TUTORIAL FUNCTIONS =================
-    function runSetupAnimations() {
-        // Typing animation for email in code block
-        const emailEl = document.getElementById('typingEmail');
-        const emailText = 'your-email@example.com';
-        let charIndex = 0;
-
-        setTimeout(() => {
-            const typeInterval = setInterval(() => {
-                if (charIndex < emailText.length) {
-                    emailEl.textContent += emailText[charIndex];
-                    charIndex++;
-                } else {
-                    clearInterval(typeInterval);
-                    // After typing finishes, animate the demo URL
-                    setTimeout(animateDemoEmail, 800);
-                }
-            }, 65);
-        }, 1200);
-    }
-
-    function animateDemoEmail() {
-        const demoEl = document.getElementById('demoEmail');
-        if (!demoEl) return;
-
-        const emails = [
-            'your@email.com',
-            'jane@gmail.com',
-            'wellness@company.cn',
-            'you@yourmail.com'
-        ];
-        let emailIdx = 0;
-
-        demoEl.classList.add('animating');
-
-        function cycleEmail() {
-            emailIdx = (emailIdx + 1) % emails.length;
-            demoEl.textContent = '';
-            const target = emails[emailIdx];
-            let ci = 0;
-
-            const typeIt = setInterval(() => {
-                if (ci < target.length) {
-                    demoEl.textContent += target[ci];
-                    ci++;
-                } else {
-                    clearInterval(typeIt);
-                    if (emailIdx < emails.length - 1) {
-                        setTimeout(() => {
-                            // Delete effect
-                            const delIt = setInterval(() => {
-                                const t = demoEl.textContent;
-                                if (t.length > 0) {
-                                    demoEl.textContent = t.slice(0, -1);
-                                } else {
-                                    clearInterval(delIt);
-                                    setTimeout(cycleEmail, 300);
-                                }
-                            }, 35);
-                        }, 1500);
-                    } else {
-                        demoEl.classList.remove('animating');
-                    }
-                }
-            }, 55);
-        }
-
-        setTimeout(cycleEmail, 1000);
-    }
-
-    function dismissSetup() {
-        localStorage.setItem('bloomSetupDone', 'true');
-        const overlay = document.getElementById('setupOverlay');
-        overlay.classList.add('hiding');
-        setTimeout(() => overlay.remove(), 400);
-    }
-
-    function skipSetup() {
-        const overlay = document.getElementById('setupOverlay');
-        overlay.classList.add('hiding');
-        setTimeout(() => overlay.remove(), 400);
-    }
 
     // ================= FORM FUNCTIONS =================
     function drawProgress() {
@@ -1920,6 +1597,14 @@
         steps[cur].classList.add('active');
         drawProgress();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // TRIGGER TOUR IF ENTERING STEP 2
+        if (to === 2) {
+            // Slight delay to let transition finish
+            setTimeout(startUserTour, 600);
+        } else {
+            endTour();
+        }
     }
 
     function validate(step) {
@@ -2077,6 +1762,96 @@
         t.classList.add('show');
         setTimeout(() => t.classList.remove('show'), 3200);
     }
+
+    // ================= USER TOUR GUIDE LOGIC =================
+    let tourTimeout;
+    
+    function startUserTour() {
+        const guide = document.getElementById('tourGuide');
+        const tourText = document.getElementById('tourText');
+        
+        // Sequence Steps
+        const musicSelect = document.getElementById('tourMusicSelect');
+        const pinkPill = document.getElementById('tourPinkPill');
+        const outfitArea = document.getElementById('tourOutfitArea');
+        
+        const sequence = [
+            { 
+                el: musicSelect, 
+                text: "👇 Tap here to pick your music vibe!", 
+                onEnter: () => {} 
+            },
+            { 
+                el: pinkPill, 
+                text: "🌸 Tap 'Pink' if that's your color!", 
+                onEnter: () => pinkPill.classList.add('tour-hover'),
+                onExit: () => pinkPill.classList.remove('tour-hover')
+            },
+            { 
+                el: outfitArea, 
+                text: "✍️ Tell us what you're wearing!", 
+                onEnter: () => {}, 
+                onExit: () => {}
+            }
+        ];
+
+        let stepIndex = 0;
+
+        function showStep(index) {
+            if (index >= sequence.length) {
+                endTour();
+                return;
+            }
+
+            const step = sequence[index];
+            const rect = step.el.getBoundingClientRect();
+            
+            // Clear previous styles
+            if (sequence[index-1]) sequence[index-1].onExit?.();
+
+            // Apply current styles
+            step.onEnter?.();
+
+            // Position Guide
+            // Adjust based on viewport to keep visible
+            let top = rect.top + (rect.height / 2);
+            let left = rect.right + 20; // Default to right side
+
+            // If mobile or too far right, position below
+            if (window.innerWidth < 600 || left > window.innerWidth - 250) {
+                left = rect.left;
+                top = rect.bottom + 20;
+            }
+
+            guide.style.transform = `translate(${left}px, ${top}px)`;
+            tourText.textContent = step.text;
+            guide.classList.add('visible');
+
+            // Wait then move to next
+            clearTimeout(tourTimeout);
+            tourTimeout = setTimeout(() => {
+                showStep(index + 1);
+            }, 3500); // 3.5 seconds per step
+        }
+
+        showStep(0);
+    }
+
+    function endTour() {
+        const guide = document.getElementById('tourGuide');
+        const pinkPill = document.getElementById('tourPinkPill');
+        
+        guide.classList.remove('visible');
+        clearTimeout(tourTimeout);
+        
+        // Cleanup any lingering hover effects
+        if(pinkPill) pinkPill.classList.remove('tour-hover');
+    }
+
+    // Close tour when user interacts with elements to avoid annoyance
+    document.getElementById('tourMusicSelect').addEventListener('focus', endTour);
+    document.getElementById('cpPink').addEventListener('change', endTour);
+    document.getElementById('tourOutfitArea').addEventListener('focus', endTour);
     </script>
 </body>
 </html>
