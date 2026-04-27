@@ -65,32 +65,10 @@
             animation: bgFloat 22s ease-in-out infinite;
         }
 
-        .bg-circle:nth-child(1) {
-            width: 320px; height: 320px;
-            background: var(--pink-300);
-            top: -160px; right: -100px;
-        }
-
-        .bg-circle:nth-child(2) {
-            width: 220px; height: 220px;
-            background: var(--lav-300);
-            bottom: -110px; left: -60px;
-            animation-delay: -6s;
-        }
-
-        .bg-circle:nth-child(3) {
-            width: 160px; height: 160px;
-            background: var(--pink-200);
-            top: 45%; right: -80px;
-            animation-delay: -12s;
-        }
-
-        .bg-circle:nth-child(4) {
-            width: 260px; height: 260px;
-            background: var(--lav-200);
-            top: 25%; left: -130px;
-            animation-delay: -17s;
-        }
+        .bg-circle:nth-child(1) { width: 320px; height: 320px; background: var(--pink-300); top: -160px; right: -100px; }
+        .bg-circle:nth-child(2) { width: 220px; height: 220px; background: var(--lav-300); bottom: -110px; left: -60px; animation-delay: -6s; }
+        .bg-circle:nth-child(3) { width: 160px; height: 160px; background: var(--pink-200); top: 45%; right: -80px; animation-delay: -12s; }
+        .bg-circle:nth-child(4) { width: 260px; height: 260px; background: var(--lav-200); top: 25%; left: -130px; animation-delay: -17s; }
 
         @keyframes bgFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -122,12 +100,8 @@
             z-index: 1;
         }
 
-        .header {
-            text-align: center;
-            padding: 24px 16px 20px;
-        }
+        .header { text-align: center; padding: 24px 16px 20px; }
 
-        /* --- PRESENTER STYLES --- */
         .presenter-line {
             font-family: 'Dancing Script', cursive;
             font-size: 1.15rem;
@@ -159,7 +133,6 @@
             border-radius: 10px;
             margin: 10px auto 22px;
         }
-        /* ------------------------- */
 
         .header-emoji { font-size: 2.8rem; display: block; margin-bottom: 8px; }
 
@@ -243,11 +216,7 @@
             transition: var(--transition);
         }
 
-        .step {
-            display: none;
-            animation: fadeUp 0.45s var(--ease) forwards;
-        }
-
+        .step { display: none; animation: fadeUp 0.45s var(--ease) forwards; }
         .step.active { display: block; }
 
         @keyframes fadeUp {
@@ -290,203 +259,86 @@
         .detail-card .d-icon { font-size: 1.4rem; display: block; margin-bottom: 6px; }
         .detail-card .d-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
         .detail-card .d-value { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.97rem; }
-        
-        /* CHINESE VENUE TEXT STYLE */
-        .detail-card .d-value-cn { 
-            font-family: 'Noto Sans SC', sans-serif; 
-            font-weight: 500; 
-            font-size: 0.88rem; 
+        .detail-card .d-value-cn {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
             color: var(--pink-600);
-            margin-top: 3px;
             display: block;
+            margin-top: 5px;
+            font-weight: 500;
         }
 
-        .detail-card.full-width {
-            grid-column: 1 / -1;
-        }
-
-        /* GROUP QR CODE SECTION */
-        .group-qr-section {
-            margin: 22px 0;
-            text-align: center;
-        }
-
+        /* Group QR Card */
         .group-qr-card {
-            background: linear-gradient(135deg, rgba(252, 231, 243, 0.55), rgba(243, 232, 255, 0.55));
+            background: linear-gradient(135deg, rgba(252,231,243,0.5), rgba(243,232,255,0.5));
+            border: 2px dashed var(--pink-300);
             border-radius: 18px;
-            padding: 28px 22px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            position: relative;
-            overflow: hidden;
+            padding: 24px 20px;
+            text-align: center;
+            margin: 20px 0;
         }
 
-        .group-qr-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--pink-300), var(--lav-300), var(--pink-300));
-            z-index: -1;
-            opacity: 0.5;
-            animation: shimmerBorder 4s ease-in-out infinite;
-        }
-
-        @keyframes shimmerBorder {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.7; }
-        }
-
-        .group-qr-title {
+        .group-qr-card h4 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text-dark);
+            color: var(--pink-600);
+            font-size: 1.05rem;
             margin-bottom: 4px;
         }
 
-        .group-qr-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .group-qr-box {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: 16px;
-            margin: 0 auto 14px;
-            display: grid;
-            place-items: center;
-            border: 2px dashed var(--pink-200);
-            padding: 8px;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .group-qr-box:hover {
-            border-color: var(--pink-400);
-            transform: scale(1.03);
-            box-shadow: 0 8px 28px rgba(236, 72, 153, 0.15);
-        }
-
-        .group-qr-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        .group-qr-box .qr-placeholder-text {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            padding: 14px;
-            line-height: 1.5;
-        }
-
-        .group-qr-hint {
+        .group-qr-card .gq-sub {
             font-size: 0.82rem;
-            color: var(--pink-500);
-            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .group-qr-card .gq-img-wrap {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 14px;
+            margin: 0 auto 14px;
+            padding: 10px;
+            border: 1px solid var(--pink-100);
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+
+        .group-qr-card .gq-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .group-qr-card .gq-hint {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--pink-500);
+        }
+
+        /* Image fallback styling */
+        .img-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--pink-50), var(--lav-50));
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-align: center;
+            padding: 10px;
             gap: 6px;
         }
 
-        .group-qr-hint .pulse-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--pink-400);
-            animation: pulseDot 1.5s ease-in-out infinite;
-        }
+        .img-fallback .fb-icon { font-size: 2rem; }
+        .img-fallback strong { color: var(--pink-500); font-size: 0.78rem; }
 
-        @keyframes pulseDot {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.6); opacity: 0.5; }
-        }
-
-        .group-qr-note {
-            font-size: 0.76rem;
-            color: var(--text-light);
-            margin-top: 8px;
-            font-style: italic;
-        }
-
-        /* INTERACTIVE TOUR GUIDE */
-        .tour-guide {
-            position: fixed;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-        }
-
-        .tour-guide.visible {
-            opacity: 1;
-        }
-
-        .tour-bubble {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 12px 20px;
-            border-radius: 16px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            pointer-events: auto;
-            max-width: 220px;
-        }
-
-        .tour-bubble::after {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-width: 8px 8px 8px 0;
-            border-style: solid;
-            border-color: transparent var(--text-dark) transparent transparent;
-        }
-
-        .tour-hand {
-            font-size: 1.4rem;
-            line-height: 1;
-            animation: waveHand 0.8s ease-in-out infinite alternate;
-        }
-
-        @keyframes waveHand {
-            0% { transform: rotate(-10deg) translateX(-2px); }
-            100% { transform: rotate(10deg) translateX(2px); }
-        }
-
-        .tour-close {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 24px;
-            height: 24px;
-            background: var(--pink-500);
-            border-radius: 50%;
-            color: white;
-            display: grid;
-            place-items: center;
-            font-size: 0.8rem;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            pointer-events: auto;
-        }
-
-        /* ORIGINAL STYLES CONTINUE */
         .reminder {
             background: linear-gradient(135deg, #fff5f7, #fdf2ff);
             border-radius: 14px;
@@ -551,11 +403,7 @@
             box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.08);
         }
 
-        .fi::placeholder, .ft::placeholder {
-            color: var(--text-light);
-            font-weight: 400;
-        }
-
+        .fi::placeholder, .ft::placeholder { color: var(--text-light); font-weight: 400; }
         .ft { resize: vertical; min-height: 90px; }
 
         .fs {
@@ -572,18 +420,9 @@
             background: rgba(254, 242, 242, 0.45);
         }
 
-        .tip {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            margin-top: 5px;
-            font-style: italic;
-        }
+        .tip { font-size: 0.78rem; color: var(--text-light); margin-top: 5px; font-style: italic; }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
         .divider {
             height: 1px;
@@ -591,14 +430,8 @@
             margin: 24px 0;
         }
 
-        .cb-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 9px;
-        }
-
+        .cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
         .cb-item { position: relative; }
-
         .cb-item input { position: absolute; opacity: 0; pointer-events: none; }
 
         .cb-label {
@@ -616,10 +449,7 @@
             user-select: none;
         }
 
-        .cb-label:hover {
-            border-color: var(--pink-300);
-            background: rgba(252, 231, 243, 0.45);
-        }
+        .cb-label:hover { border-color: var(--pink-300); background: rgba(252, 231, 243, 0.45); }
 
         .cb-item input:checked + .cb-label {
             border-color: var(--pink-400);
@@ -671,7 +501,6 @@
             box-shadow: 0 4px 14px rgba(236, 72, 153, 0.22);
         }
 
-        /* COLOR SWATCH PILLS */
         .color-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
         .color-pill  { position: relative; }
         .color-pill input { position: absolute; opacity: 0; pointer-events: none; }
@@ -691,10 +520,7 @@
             user-select: none;
         }
 
-        .color-pill-label:hover {
-            border-color: var(--pink-300);
-            transform: translateY(-1px);
-        }
+        .color-pill-label:hover { border-color: var(--pink-300); transform: translateY(-1px); }
 
         .color-pill input:checked + .color-pill-label {
             border-color: var(--pink-500);
@@ -703,13 +529,7 @@
             transform: scale(1.05);
         }
 
-        .swatch {
-            width: 22px; height: 22px;
-            border-radius: 50%;
-            border: 2px solid rgba(0,0,0,0.08);
-            flex-shrink: 0;
-        }
-
+        .swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.08); flex-shrink: 0; }
         .swatch-pink   { background: #f9a8d4; }
         .swatch-purple { background: #c084fc; }
         .swatch-white  { background: #ffffff; border-color: #ddd; }
@@ -731,11 +551,10 @@
         .black-note strong { color: var(--text-dark); }
 
         .slider-wrap { padding: 16px 0; }
-
         .slider-display { text-align: center; margin-bottom: 18px; }
-        .slider-emoji   { font-size: 2.8rem; display: block; margin-bottom: 4px; transition: var(--transition); }
-        .slider-val     { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; }
-        .slider-lbl     { font-size: 0.83rem; color: var(--text-muted); display: block; margin-top: 2px; }
+        .slider-emoji { font-size: 2.8rem; display: block; margin-bottom: 4px; transition: var(--transition); }
+        .slider-val   { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; }
+        .slider-lbl   { font-size: 0.83rem; color: var(--text-muted); display: block; margin-top: 2px; }
 
         .stress-range {
             -webkit-appearance: none;
@@ -788,10 +607,7 @@
             overflow: hidden;
         }
 
-        .upload-zone:hover {
-            border-color: var(--pink-400);
-            background: rgba(252, 231, 243, 0.35);
-        }
+        .upload-zone:hover { border-color: var(--pink-400); background: rgba(252, 231, 243, 0.35); }
 
         .upload-zone.uploaded {
             border-color: #86efac;
@@ -799,13 +615,7 @@
             border-style: solid;
         }
 
-        .upload-zone input[type="file"] {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
-
+        .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
         .uz-icon { font-size: 2.4rem; display: block; margin-bottom: 8px; }
         .uz-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 4px; }
         .uz-hint { font-size: 0.76rem; color: var(--text-light); }
@@ -819,15 +629,9 @@
             box-shadow: 0 4px 14px rgba(0,0,0,0.08);
         }
 
-        .uz-filename {
-            font-size: 0.83rem;
-            color: var(--pink-600);
-            font-weight: 600;
-            margin-top: 8px;
-            display: none;
-        }
+        .uz-filename { font-size: 0.83rem; color: var(--pink-600); font-weight: 600; margin-top: 8px; display: none; }
 
-        /* PAYMENT QR SECTION */
+        /* Payment QR */
         .pay-section { margin: 22px 0; }
 
         .pay-tabs {
@@ -870,14 +674,18 @@
         .pay-qr-panel.active { display: block; }
 
         .pay-qr .qr-box {
-            width: 200px; height: 200px;
+            width: 210px;
+            height: 210px;
             background: white;
             border-radius: 14px;
             margin: 14px auto;
-            display: grid; place-items: center;
-            border: 2px dashed var(--pink-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--pink-100);
             padding: 8px;
             overflow: hidden;
+            box-shadow: 0 4px 16px rgba(236,72,153,0.08);
         }
 
         .pay-qr .qr-box img {
@@ -885,13 +693,7 @@
             height: 100%;
             object-fit: contain;
             border-radius: 10px;
-        }
-
-        .pay-qr .qr-placeholder {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            padding: 14px;
-            line-height: 1.5;
+            display: block;
         }
 
         .btns {
@@ -923,10 +725,7 @@
             box-shadow: 0 4px 14px rgba(236, 72, 153, 0.28);
         }
 
-        .btn-p:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(236, 72, 153, 0.35);
-        }
+        .btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(236, 72, 153, 0.35); }
 
         .btn-s {
             background: rgba(255, 255, 255, 0.75);
@@ -934,11 +733,7 @@
             border: 2px solid rgba(233, 213, 255, 0.45);
         }
 
-        .btn-s:hover {
-            border-color: var(--pink-300);
-            color: var(--pink-500);
-        }
-
+        .btn-s:hover { border-color: var(--pink-300); color: var(--pink-500); }
         .btn:active { transform: scale(0.97); }
 
         .spinner {
@@ -967,18 +762,9 @@
             100%{ transform: scale(1); opacity: 1; }
         }
 
-        .success h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
-            margin-bottom: 10px;
-        }
+        .success h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; margin-bottom: 10px; }
 
-        .success p {
-            color: var(--text-muted);
-            font-size: 0.93rem;
-            line-height: 1.7;
-            margin-bottom: 22px;
-        }
+        .success p { color: var(--text-muted); font-size: 0.93rem; line-height: 1.7; margin-bottom: 22px; }
 
         .toast {
             position: fixed;
@@ -1000,9 +786,7 @@
             text-overflow: ellipsis;
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
 
         .footer {
             text-align: center;
@@ -1010,6 +794,195 @@
             color: var(--text-light);
             font-size: 0.78rem;
         }
+
+        /* ===== USER GUIDE OVERLAY ===== */
+        .user-guide-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 27, 51, 0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: guideOverlayIn 0.5s var(--ease);
+        }
+
+        .user-guide-overlay.hiding {
+            animation: guideOverlayOut 0.4s var(--ease) forwards;
+        }
+
+        @keyframes guideOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes guideOverlayOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .guide-modal {
+            background: white;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 420px;
+            padding: 38px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            animation: guideModalIn 0.5s var(--ease);
+        }
+
+        @keyframes guideModalIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .guide-step { display: none; animation: guideSlideIn 0.45s var(--ease); }
+        .guide-step.active { display: block; }
+
+        @keyframes guideSlideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        .guide-step h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; margin-bottom: 6px; color: var(--text-dark); }
+        .guide-step .guide-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5; }
+
+        .demo-box {
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 18px 0;
+            background: linear-gradient(135deg, var(--pink-50), var(--lav-50));
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            gap: 10px;
+        }
+
+        .hand-cursor {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 10;
+            transition: all 0.6s ease-in-out;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
+        .demo-music-box {
+            width: 200px;
+            padding: 12px 16px;
+            border: 2.5px solid var(--pink-300);
+            border-radius: 12px;
+            background: white;
+            text-align: left;
+            font-size: 0.88rem;
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-muted);
+            transition: all 0.4s var(--ease);
+        }
+
+        .demo-music-box.picked {
+            border-color: var(--pink-500);
+            color: var(--text-dark);
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.15);
+        }
+
+        .demo-pill {
+            padding: 9px 16px;
+            border-radius: 50px;
+            border: 2.5px solid var(--pink-200);
+            background: white;
+            transition: all 0.35s var(--ease);
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-muted);
+        }
+
+        .demo-pill.selected {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            color: white;
+            border-color: transparent;
+            transform: scale(1.1);
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
+        }
+
+        .demo-slider-track {
+            width: 80%;
+            height: 8px;
+            background: linear-gradient(90deg, #86efac, #fde047, #fca5a5);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .demo-slider-thumb {
+            width: 26px;
+            height: 26px;
+            background: white;
+            border: 3px solid var(--pink-400);
+            border-radius: 50%;
+            position: absolute;
+            top: -9px;
+            left: 20%;
+            transition: left 0.8s var(--ease);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .demo-emoji-display {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 1.6rem;
+            transition: all 0.3s var(--ease);
+        }
+
+        .guide-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 18px 0 6px;
+        }
+
+        .guide-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink-200);
+            transition: var(--transition);
+        }
+
+        .guide-dot.active { background: var(--pink-500); transform: scale(1.3); }
+
+        .guide-btn {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            color: white;
+            border: none;
+            padding: 13px 32px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 14px;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.25);
+        }
+
+        .guide-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35); }
+
+        .guide-skip {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .guide-skip:hover { color: var(--pink-500); }
 
         @media (max-width: 600px) {
             .container { padding: 12px; }
@@ -1026,18 +999,90 @@
             .btns { flex-direction: column-reverse; }
             .step-title { font-size: 1.28rem; }
             .pay-tabs { flex-direction: column; align-items: center; }
-            .group-qr-box { width: 180px; height: 180px; }
-            .tour-bubble::after {
-                left: 50%;
-                top: auto;
-                bottom: -8px;
-                transform: translateX(-50%) rotate(90deg);
-            }
+            .guide-modal { padding: 28px 20px; max-width: 360px; }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- USER GUIDE OVERLAY -->
+    <div class="user-guide-overlay" id="userGuide">
+        <div class="guide-modal">
+            <div class="hand-cursor" id="guideHand">👆</div>
+
+            <div class="guide-step active" id="gStep1">
+                <h3>Pick Your Vibe 🎵</h3>
+                <p class="guide-desc">Choose the music style that moves your soul — from Latin to Afrobeats!</p>
+                <div class="demo-box">
+                    <div class="demo-music-box" id="demoMusic">Choose your vibe ♪</div>
+                </div>
+                <div class="guide-dots">
+                    <div class="guide-dot active"></div>
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot"></div>
+                </div>
+                <button class="guide-btn" onclick="nextGuide(2)">Next Tip →</button>
+                <button class="guide-skip" onclick="closeGuide()">Skip tutorial</button>
+            </div>
+
+            <div class="guide-step" id="gStep2">
+                <h3>Dress the Part 👗</h3>
+                <p class="guide-desc">Select your yoga pants colour — tap your choice!</p>
+                <div class="demo-box">
+                    <div class="demo-pill" id="demoPill1">🩷 Pink</div>
+                    <div class="demo-pill" id="demoPill2">💜 Purple</div>
+                    <div class="demo-pill" id="demoPill3">🤍 White</div>
+                </div>
+                <div class="guide-dots">
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot active"></div>
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot"></div>
+                </div>
+                <button class="guide-btn" onclick="nextGuide(3)">Next Tip →</button>
+                <button class="guide-skip" onclick="closeGuide()">Skip tutorial</button>
+            </div>
+
+            <div class="guide-step" id="gStep3">
+                <h3>Wellness Check-In 🧘‍♀️</h3>
+                <p class="guide-desc">Slide to tell us your stress level — we tailor the retreat for you!</p>
+                <div class="demo-box">
+                    <div class="demo-slider-track">
+                        <div class="demo-slider-thumb" id="demoThumb"></div>
+                    </div>
+                    <div class="demo-emoji-display" id="demoSliderEmoji">😊</div>
+                </div>
+                <div class="guide-dots">
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot active"></div>
+                    <div class="guide-dot"></div>
+                </div>
+                <button class="guide-btn" onclick="nextGuide(4)">Next Tip →</button>
+                <button class="guide-skip" onclick="closeGuide()">Skip tutorial</button>
+            </div>
+
+            <div class="guide-step" id="gStep4">
+                <h3>Choose Your Goals ✨</h3>
+                <p class="guide-desc">Tick as many as you like — relaxation, fitness, fun, and more!</p>
+                <div class="demo-box">
+                    <div class="demo-pill" id="demoCheck1">🌿 Relaxation</div>
+                    <div class="demo-pill" id="demoCheck2">💪 Fitness</div>
+                    <div class="demo-pill" id="demoCheck3">🎉 Fun</div>
+                </div>
+                <div class="guide-dots">
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot"></div>
+                    <div class="guide-dot active"></div>
+                </div>
+                <button class="guide-btn" onclick="closeGuide()">Got It — Let's Start! 🌸</button>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-deco">
         <div class="bg-circle"></div>
         <div class="bg-circle"></div>
@@ -1045,25 +1090,14 @@
         <div class="bg-circle"></div>
     </div>
 
-    <!-- TOUR GUIDE ELEMENT -->
-    <div id="tourGuide" class="tour-guide">
-        <div class="tour-bubble">
-            <span class="tour-hand">👉</span>
-            <span id="tourText">Hello there!</span>
-            <div class="tour-close" onclick="endTour()">✕</div>
-        </div>
-    </div>
-
     <div class="toast" id="toast"></div>
 
     <div class="container">
 
         <header class="header">
-            <!-- ✅ PRESENTER BANNER -->
             <p class="presenter-line">Pamora Space Presents</p>
             <h2 class="presenter-title">" Bloom &amp; Breathe "</h2>
             <div class="presenter-divider"></div>
-            
             <span class="header-emoji">🌸</span>
             <h1>Bloom &amp; Breathe</h1>
             <p class="tagline">Women's Wellness Retreat</p>
@@ -1075,7 +1109,7 @@
         <div class="card">
             <form id="regForm" enctype="multipart/form-data">
 
-                <!-- ===================== STEP 0 : WELCOME ===================== -->
+                <!-- STEP 0: WELCOME -->
                 <div class="step active" data-step="0">
                     <span class="step-emoji">✨</span>
                     <h2 class="step-title">Welcome, Beautiful</h2>
@@ -1096,7 +1130,6 @@
                             <span class="d-icon">📍</span>
                             <div class="d-label">Venue</div>
                             <div class="d-value">Sanyang Wetlands</div>
-                            <!-- CHINESE VENUE NAME ADDED HERE -->
                             <span class="d-value-cn">文昌园观景塔</span>
                         </div>
                         <div class="detail-card">
@@ -1106,22 +1139,21 @@
                         </div>
                     </div>
 
-                    <!-- GROUP QR CODE ADDED HERE -->
-                    <div class="group-qr-section" id="groupQrSection">
-                        <div class="group-qr-card">
-                            <div class="group-qr-title">💬 Join Our WeChat Group</div>
-                            <p class="group-qr-subtitle">Scan to connect with fellow attendees</p>
-                            <div class="group-qr-box" id="groupQrBox">
-                                <!-- ✅ REPLACE group-qr.png WITH YOUR ACTUAL GROUP QR IMAGE -->
-                                <img src="group-qr.png" alt="WeChat Group QR Code" 
-                                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'qr-placeholder-text\'>📱 Group QR Code<br><br><small>Replace <strong>group-qr.png</strong><br>with your WeChat group QR image</small></div>';">
-                            </div>
-                            <p class="group-qr-hint">
-                                <span class="pulse-dot"></span>
-                                Open WeChat → Scan to Join
-                            </p>
-                            <p class="group-qr-note">Join our community for event updates &amp; announcements</p>
+                    <!-- GROUP QR CODE -->
+                    <div class="group-qr-card">
+                        <h4>💬 Join the Retreat Group</h4>
+                        <p class="gq-sub">Scan to connect with fellow attendees on WeChat</p>
+                        <div class="gq-img-wrap" id="groupQrWrap">
+                            <img
+                                id="groupQrImg"
+                                src="group-qr.png"
+                                alt="WeChat Group QR Code"
+                                onload="this.style.display='block';"
+                                onerror="handleImgError(this, '💬', 'Group QR', 'group-qr.png');"
+                                style="display:none;"
+                            >
                         </div>
+                        <p class="gq-hint">Open WeChat → Scan to Join 📱</p>
                     </div>
 
                     <div class="reminder">
@@ -1136,12 +1168,11 @@
                     </div>
 
                     <div class="btns">
-                        <!-- ID ADDED FOR ANIMATION TARGETING -->
-                        <button type="button" id="letBeginBtn" class="btn btn-p" onclick="goNext()">Let's Begin 🌷</button>
+                        <button type="button" class="btn btn-p" onclick="goNext()">Let's Begin 🌷</button>
                     </div>
                 </div>
 
-                <!-- ===================== STEP 1 : PERSONAL INFO ===================== -->
+                <!-- STEP 1: PERSONAL INFO -->
                 <div class="step" data-step="1">
                     <span class="step-emoji">👤</span>
                     <h2 class="step-title">About You</h2>
@@ -1175,7 +1206,7 @@
                     </div>
                 </div>
 
-                <!-- ===================== STEP 2 : STYLE & VIBE ===================== -->
+                <!-- STEP 2: STYLE & VIBE -->
                 <div class="step" data-step="2">
                     <span class="step-emoji">👗</span>
                     <h2 class="step-title">Your Style &amp; Vibe</h2>
@@ -1245,7 +1276,7 @@
                     </div>
                 </div>
 
-                <!-- ===================== STEP 3 : WELLNESS ===================== -->
+                <!-- STEP 3: WELLNESS -->
                 <div class="step" data-step="3">
                     <span class="step-emoji">🧘‍♀️</span>
                     <h2 class="step-title">Wellness Check-In</h2>
@@ -1313,7 +1344,7 @@
                     </div>
                 </div>
 
-                <!-- ===================== STEP 4 : ACTIVITIES & DIET ===================== -->
+                <!-- STEP 4: ACTIVITIES & DIET -->
                 <div class="step" data-step="4">
                     <span class="step-emoji">🎯</span>
                     <h2 class="step-title">Activities &amp; Dietary Needs</h2>
@@ -1400,7 +1431,7 @@
                     </div>
                 </div>
 
-                <!-- ===================== STEP 5 : PAYMENT ===================== -->
+                <!-- STEP 5: PAYMENT -->
                 <div class="step" data-step="5">
                     <span class="step-emoji">💳</span>
                     <h2 class="step-title">Payment</h2>
@@ -1420,7 +1451,6 @@
                         </div>
                     </div>
 
-                    <!-- PAYMENT QR CODES WITH TABS -->
                     <div class="pay-section">
                         <div class="pay-tabs">
                             <button type="button" class="pay-tab active" onclick="showPayTab('wechat', this)">💚 WeChat Pay</button>
@@ -1431,9 +1461,15 @@
                         <div class="pay-qr pay-qr-panel active" id="qr-wechat">
                             <p style="font-weight:600;margin-bottom:4px;">💚 WeChat Pay — Scan to Pay ¥50</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">Open WeChat → Scan the QR code below</p>
-                            <div class="qr-box">
-                                <!-- REPLACE THIS WITH YOUR IMAGE -->
-                                <img src="wechat-qr.png" alt="WeChat Pay QR Code">
+                            <div class="qr-box" id="wechatQrBox">
+                                <img
+                                    id="wechatQrImg"
+                                    src="wechat-qr.png"
+                                    alt="WeChat Pay QR Code"
+                                    onload="this.style.display='block';"
+                                    onerror="handleImgError(this, '💚', 'WeChat Pay QR', 'wechat-qr.png');"
+                                    style="display:none;"
+                                >
                             </div>
                             <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">Amount: <strong>¥50.00</strong></p>
                         </div>
@@ -1442,9 +1478,15 @@
                         <div class="pay-qr pay-qr-panel" id="qr-alipay">
                             <p style="font-weight:600;margin-bottom:4px;">💙 Alipay — Scan to Pay ¥50</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">Open Alipay → Scan the QR code below</p>
-                            <div class="qr-box">
-                                <!-- REPLACE THIS WITH YOUR IMAGE -->
-                                <img src="alipay-qr.png" alt="Alipay QR Code">
+                            <div class="qr-box" id="alipayQrBox">
+                                <img
+                                    id="alipayQrImg"
+                                    src="alipay-qr.png"
+                                    alt="Alipay QR Code"
+                                    onload="this.style.display='block';"
+                                    onerror="handleImgError(this, '💙', 'Alipay QR', 'alipay-qr.png');"
+                                    style="display:none;"
+                                >
                             </div>
                             <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">Amount: <strong>¥50.00</strong></p>
                         </div>
@@ -1476,7 +1518,7 @@
                     </div>
                 </div>
 
-                <!-- ===================== STEP 6 : SUCCESS ===================== -->
+                <!-- STEP 6: SUCCESS -->
                 <div class="step" data-step="6">
                     <div class="success">
                         <span class="success-icon">🌸</span>
@@ -1492,7 +1534,7 @@
                             <ul>
                                 <li>📅 Friday, May 1, 2026</li>
                                 <li>🕐 1:30 PM – 3:30 PM</li>
-                                <li>📍 Sanyang Wetlands</li>
+                                <li>📍 Sanyang Wetlands · 文昌园观景塔</li>
                                 <li>🧘 Bring your yoga mat</li>
                                 <li>👖 Pink, Purple, or White yoga pants (or Black)</li>
                                 <li>💧 Bring water &amp; sunscreen</li>
@@ -1521,23 +1563,173 @@
     </div>
 
     <script>
-    // ⚠️ REPLACE THIS WITH YOUR ACTUAL EMAIL
     const FORM_EMAIL = 'drtbmadzikatire@dingtalk.com';
 
     let cur = 0;
     const TOTAL = 7;
     const ICONS = ['🏠','👤','👗','🧘','🎯','💳','✅'];
 
+    /* ── Image error handler ─────────────────────────────────────
+       Tries every common extension/case before showing fallback.
+       Priority list: exact name → .PNG → .JPG → .JPEG → .jpeg → .jpg
+    ────────────────────────────────────────────────────────────── */
+    const _imgTried = {};
+
+    function handleImgError(img, icon, label, originalSrc) {
+        if (!_imgTried[originalSrc]) _imgTried[originalSrc] = 0;
+
+        const base  = originalSrc.replace(/\.[^/.]+$/, '');   // strip extension
+        const tries = [
+            originalSrc,          // already tried (triggered onerror)
+            base + '.PNG',
+            base + '.JPG',
+            base + '.JPEG',
+            base + '.jpeg',
+            base + '.jpg',
+            base + '.png',
+        ];
+
+        const nextIdx = _imgTried[originalSrc] + 1;
+        _imgTried[originalSrc] = nextIdx;
+
+        if (nextIdx < tries.length) {
+            // Try next extension
+            img.src = tries[nextIdx];
+        } else {
+            // All attempts exhausted — show styled fallback
+            img.style.display = 'none';
+            const parent = img.parentElement;
+            if (!parent.querySelector('.img-fallback')) {
+                parent.innerHTML = `
+                    <div class="img-fallback">
+                        <span class="fb-icon">${icon}</span>
+                        <strong>${label}</strong>
+                        <span>Add <em>${originalSrc}</em><br>to your repository</span>
+                    </div>`;
+            }
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+        // Force-check all QR images right away
+        ['wechatQrImg','alipayQrImg','groupQrImg'].forEach(id => {
+            const img = document.getElementById(id);
+            if (img && img.complete) {
+                if (img.naturalWidth === 0) {
+                    img.dispatchEvent(new Event('error'));
+                } else {
+                    img.style.display = 'block';
+                }
+            }
+        });
+
         drawProgress();
         initSlider();
         initUpload();
         spawnPetals();
-        
-        // START WELCOME TOUR ON PAGE LOAD
-        setTimeout(startWelcomeTour, 1500);
+        startGuideAnimations();
     });
 
+    /* ── User Guide Animations ────────────────────────────────── */
+    function startGuideAnimations() { animateGuideStep1(); }
+
+    function animateGuideStep1() {
+        const hand  = document.getElementById('guideHand');
+        const music = document.getElementById('demoMusic');
+        hand.style.top  = '52%';
+        hand.style.left = '55%';
+
+        const opts = ['💃 Latin (Reggaeton, Salsa)','🌍 Afrobeats','🎵 Amapiano','🎶 Mix of Everything'];
+        let idx = 0;
+        music.textContent = opts[0];
+        music.classList.add('picked');
+
+        const iv = setInterval(() => {
+            idx = (idx + 1) % opts.length;
+            music.textContent = opts[idx];
+        }, 1400);
+
+        setTimeout(() => clearInterval(iv), 7000);
+    }
+
+    function animateGuideStep2() {
+        const hand = document.getElementById('guideHand');
+        const pills = ['demoPill1','demoPill2','demoPill3'];
+        const positions = ['18%','48%','75%'];
+        let idx = 0;
+
+        function cycle() {
+            pills.forEach(id => document.getElementById(id).classList.remove('selected'));
+            document.getElementById(pills[idx]).classList.add('selected');
+            hand.style.left = positions[idx];
+            idx = (idx + 1) % pills.length;
+        }
+
+        hand.style.top = '50%';
+        cycle();
+        const iv = setInterval(cycle, 1000);
+        setTimeout(() => clearInterval(iv), 7000);
+    }
+
+    function animateGuideStep3() {
+        const hand  = document.getElementById('guideHand');
+        const thumb = document.getElementById('demoThumb');
+        const emoji = document.getElementById('demoSliderEmoji');
+        const states = [
+            { left: '20%', em: '😊', handL: '25%' },
+            { left: '50%', em: '😐', handL: '55%' },
+            { left: '75%', em: '😰', handL: '78%' },
+            { left: '30%', em: '🙂', handL: '35%' },
+        ];
+        let idx = 0;
+        hand.style.top = '50%';
+
+        function cycle() {
+            const s = states[idx % states.length];
+            thumb.style.left = s.left;
+            emoji.textContent = s.em;
+            hand.style.left   = s.handL;
+            idx++;
+        }
+
+        cycle();
+        const iv = setInterval(cycle, 1200);
+        setTimeout(() => clearInterval(iv), 7000);
+    }
+
+    function animateGuideStep4() {
+        const hand   = document.getElementById('guideHand');
+        const checks = ['demoCheck1','demoCheck2','demoCheck3'];
+        const pos    = ['20%','48%','75%'];
+        let idx = 0;
+        hand.style.top = '50%';
+
+        function cycle() {
+            document.getElementById(checks[idx]).classList.add('selected');
+            hand.style.left = pos[idx];
+            idx = (idx + 1) % checks.length;
+        }
+
+        cycle();
+        const iv = setInterval(cycle, 900);
+        setTimeout(() => clearInterval(iv), 7000);
+    }
+
+    function nextGuide(step) {
+        document.querySelectorAll('.guide-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('gStep' + step).classList.add('active');
+        if (step === 2) animateGuideStep2();
+        if (step === 3) animateGuideStep3();
+        if (step === 4) animateGuideStep4();
+    }
+
+    function closeGuide() {
+        const overlay = document.getElementById('userGuide');
+        overlay.classList.add('hiding');
+        setTimeout(() => { overlay.style.display = 'none'; }, 400);
+    }
+
+    /* ── Form logic (unchanged from original) ─────────────────── */
     function drawProgress() {
         const bar = document.getElementById('progressBar');
         let h = '';
@@ -1550,12 +1742,7 @@
         bar.innerHTML = h;
     }
 
-    function goNext() {
-        if (!validate(cur)) return;
-        endTour(); // Stop tour when user navigates away
-        swap(cur, cur + 1);
-    }
-
+    function goNext() { if (!validate(cur)) return; swap(cur, cur + 1); }
     function goPrev() { swap(cur, cur - 1); }
 
     function swap(from, to) {
@@ -1573,25 +1760,18 @@
 
         el.querySelectorAll('input[required]:not([type="radio"]):not([type="file"])').forEach(inp => {
             if (!inp.value || !inp.value.trim()) {
-                inp.classList.add('err');
-                ok = false;
+                inp.classList.add('err'); ok = false;
                 inp.addEventListener('input', () => inp.classList.remove('err'), { once: true });
-            } else {
-                inp.classList.remove('err');
-            }
+            } else { inp.classList.remove('err'); }
         });
 
         el.querySelectorAll('select[required]').forEach(sel => {
             if (!sel.value) {
-                sel.classList.add('err');
-                ok = false;
+                sel.classList.add('err'); ok = false;
                 sel.addEventListener('change', () => sel.classList.remove('err'), { once: true });
-            } else {
-                sel.classList.remove('err');
-            }
+            } else { sel.classList.remove('err'); }
         });
 
-        // Check required radio groups in this step
         if (step === 2) {
             if (!el.querySelector('input[name="yoga_pants_color"]:checked')) {
                 toast('Please select your yoga pants colour 🎨');
@@ -1627,7 +1807,6 @@
         spin.style.display = 'block';
 
         const fd = new FormData(document.getElementById('regForm'));
-
         ['goals','activities','dietary'].forEach(name => {
             const vals = [];
             document.querySelectorAll(`input[name="${name}"]:checked`).forEach(c => vals.push(c.value));
@@ -1637,16 +1816,11 @@
 
         try {
             const res = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
-                method: 'POST',
-                body: fd
+                method: 'POST', body: fd
             });
-
-            if (res.ok) {
-                swap(cur, 6);
-            } else {
-                throw new Error('fail');
-            }
-        } catch (e) {
+            if (res.ok) { swap(cur, 6); }
+            else { throw new Error('fail'); }
+        } catch(e) {
             toast('Something went wrong — please try again 🙏');
             btn.disabled = false;
             txt.style.display = 'inline';
@@ -1656,13 +1830,13 @@
 
     function initSlider() {
         const r = document.getElementById('sRange');
-        const emojis = { 1:'😌',2:'😊',3:'🙂',4:'😐',5:'😕',6:'😟',7:'😣',8:'😫',9:'😰',10:'🤯' };
-        const labels = { 1:'Totally zen',2:'Pretty relaxed',3:'Mild stress',4:'Some tension',5:'Moderate stress',6:'Quite stressed',7:'High stress',8:'Very stressed',9:'Overwhelmed',10:'Maximum stress!' };
+        const emojis = {1:'😌',2:'😊',3:'🙂',4:'😐',5:'😕',6:'😟',7:'😣',8:'😫',9:'😰',10:'🤯'};
+        const labels = {1:'Totally zen',2:'Pretty relaxed',3:'Mild stress',4:'Some tension',5:'Moderate stress',6:'Quite stressed',7:'High stress',8:'Very stressed',9:'Overwhelmed',10:'Maximum stress!'};
         r.addEventListener('input', () => {
             const v = +r.value;
             document.getElementById('sEmoji').textContent = emojis[v];
             document.getElementById('sVal').textContent   = v;
-            document.getElementById('sLbl').textContent    = labels[v];
+            document.getElementById('sLbl').textContent   = labels[v];
         });
     }
 
@@ -1691,7 +1865,6 @@
         });
     }
 
-    // Payment tab switching
     function showPayTab(type, btn) {
         document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.pay-qr-panel').forEach(p => p.classList.remove('active'));
@@ -1707,8 +1880,7 @@
             const s = 7 + Math.random() * 11;
             Object.assign(p.style, {
                 left: Math.random() * 100 + 'vw',
-                width: s + 'px',
-                height: s + 'px',
+                width: s + 'px', height: s + 'px',
                 background: cols[Math.floor(Math.random() * cols.length)],
                 animationDuration: (16 + Math.random() * 18) + 's',
                 animationDelay: (Math.random() * 22) + 's',
@@ -1724,74 +1896,6 @@
         t.classList.add('show');
         setTimeout(() => t.classList.remove('show'), 3200);
     }
-
-    // ================= WELCOME TOUR ANIMATION =================
-    let tourTimeout;
-
-    function startWelcomeTour() {
-        const guide = document.getElementById('tourGuide');
-        const tourText = document.getElementById('tourText');
-        
-        const qrBox = document.getElementById('groupQrBox');
-        const beginBtn = document.getElementById('letBeginBtn');
-
-        // Define sequence for Step 0
-        const sequence = [
-            { 
-                el: qrBox, 
-                text: "📱 Scan here to join our group chat!", 
-            },
-            { 
-                el: beginBtn, 
-                text: "👇 Click here to start registration!", 
-            }
-        ];
-
-        let stepIndex = 0;
-
-        function showStep(index) {
-            if (index >= sequence.length) {
-                endTour();
-                return;
-            }
-
-            const step = sequence[index];
-            const rect = step.el.getBoundingClientRect();
-            
-            // Position Guide
-            // Adjust based on viewport to keep visible
-            let top = rect.top + (rect.height / 2);
-            let left = rect.right + 20; // Default to right side
-
-            // If mobile or too far right, position below
-            if (window.innerWidth < 600 || left > window.innerWidth - 250) {
-                left = rect.left;
-                top = rect.bottom + 20;
-            }
-
-            guide.style.transform = `translate(${left}px, ${top}px)`;
-            tourText.textContent = step.text;
-            guide.classList.add('visible');
-
-            // Wait then move to next
-            clearTimeout(tourTimeout);
-            tourTimeout = setTimeout(() => {
-                showStep(index + 1);
-            }, 3500); // 3.5 seconds per step
-        }
-
-        showStep(0);
-    }
-
-    function endTour() {
-        const guide = document.getElementById('tourGuide');
-        guide.classList.remove('visible');
-        clearTimeout(tourTimeout);
-    }
-
-    // Close tour when user interacts to avoid annoyance
-    document.getElementById('letBeginBtn').addEventListener('click', endTour);
-    document.getElementById('groupQrSection').addEventListener('click', endTour);
     </script>
 </body>
 </html>
