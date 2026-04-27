@@ -1,3 +1,8 @@
+To merge these perfectly, I have taken your original retreat code and integrated the **Animated User Guide** and the **Chinese Venue/Group QR** additions.
+
+The animation now starts automatically when a user opens the page, showing them how to select music, pick their yoga pants color, and use the wellness slider.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,131 +32,124 @@
             min-height: 100vh; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased;
         }
 
-        /* Background Deco */
         .bg-deco { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
         .bg-circle { position: absolute; border-radius: 50%; opacity: 0.12; animation: bgFloat 22s ease-in-out infinite; }
         .bg-circle:nth-child(1) { width: 320px; height: 320px; background: var(--pink-300); top: -160px; right: -100px; }
         .bg-circle:nth-child(2) { width: 220px; height: 220px; background: var(--lav-300); bottom: -110px; left: -60px; animation-delay: -6s; }
-        @keyframes bgFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(20px); } }
+        @keyframes bgFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 33% { transform: translateY(-18px) rotate(4deg); } 66% { transform: translateY(12px) rotate(-3deg); } }
+
+        .petal { position: fixed; border-radius: 50% 0 50% 50%; opacity: 0; pointer-events: none; z-index: 0; animation: petalDrift linear infinite; }
+        @keyframes petalDrift { 0% { transform: translateY(-5vh) rotate(0deg) translateX(0); opacity: 0; } 8% { opacity: 0.25; } 92% { opacity: 0.25; } 100% { transform: translateY(105vh) rotate(540deg) translateX(80px); opacity: 0; } }
 
         .container { max-width: 660px; margin: 0 auto; padding: 16px; position: relative; z-index: 1; }
 
-        /* Header Styling */
         .header { text-align: center; padding: 24px 16px 20px; }
-        .presenter-line { font-family: 'Dancing Script', cursive; font-size: 1.15rem; color: var(--text-muted); letter-spacing: 1.5px; }
-        .presenter-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; background: linear-gradient(135deg, var(--pink-500), var(--lav-500)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 5px 0; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; }
+        .presenter-line { font-family: 'Dancing Script', cursive; font-size: 1.15rem; color: var(--text-muted); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+        .presenter-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, var(--pink-500), var(--lav-500)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; line-height: 1.2; }
+        .presenter-divider { width: 80px; height: 3px; background: linear-gradient(90deg, var(--pink-300), var(--lav-400), var(--pink-300)); border-radius: 10px; margin: 10px auto 22px; }
+        .header-emoji { font-size: 2.8rem; display: block; margin-bottom: 8px; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; }
+        .header .tagline { font-family: 'Dancing Script', cursive; font-size: 1.35rem; color: var(--pink-500); }
         .header .sub { font-size: 0.92rem; color: var(--text-muted); margin-top: 6px; }
 
-        /* Progress Bar */
         .progress-bar { display: flex; justify-content: center; align-items: center; padding: 10px 0 26px; }
-        .prog-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--white); border: 2.5px solid var(--pink-200); display: grid; place-items: center; font-size: 0.72rem; transition: var(--transition); }
-        .prog-dot.active { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); border-color: transparent; color: white; transform: scale(1.18); }
+        .prog-step { display: flex; align-items: center; }
+        .prog-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--white); border: 2.5px solid var(--pink-200); display: grid; place-items: center; font-size: 0.72rem; color: var(--text-light); transition: var(--transition); flex-shrink: 0; }
+        .prog-dot.active { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); border-color: transparent; color: white; transform: scale(1.18); box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3); }
+        .prog-dot.done { background: var(--pink-400); border-color: transparent; color: white; }
         .prog-line { width: 26px; height: 2.5px; background: var(--pink-200); }
+        .prog-line.done { background: linear-gradient(90deg, var(--pink-400), var(--lav-400)); }
 
-        .card { background: var(--card-bg); backdrop-filter: blur(18px); border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.55); box-shadow: var(--shadow); padding: 38px 32px; margin-bottom: 28px; }
+        .card { background: var(--card-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.55); box-shadow: var(--shadow); padding: 38px 32px; margin-bottom: 28px; position: relative; }
         .step { display: none; animation: fadeUp 0.45s var(--ease) forwards; }
         .step.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Detail Cards */
+        .step-emoji { font-size: 2.4rem; text-align: center; display: block; margin-bottom: 8px; }
+        .step-title { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 600; text-align: center; margin-bottom: 4px; }
+        .step-sub { text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 28px; }
+
         .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0; }
-        .detail-card { background: white; border-radius: 14px; padding: 18px 14px; text-align: center; border: 1px solid var(--pink-100); }
-        .detail-card .d-value-cn { font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: var(--pink-600); display: block; margin-top: 4px; }
+        .detail-card { background: linear-gradient(135deg, rgba(252, 231, 243, 0.65), rgba(243, 232, 255, 0.65)); border-radius: 14px; padding: 18px 14px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.7); }
+        .detail-card .d-icon { font-size: 1.4rem; display: block; margin-bottom: 6px; }
+        .detail-card .d-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+        .detail-card .d-value { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.97rem; }
+        .detail-card .cn-venue { font-family: 'Noto Sans SC', sans-serif; font-size: 0.85rem; color: var(--pink-600); display: block; margin-top: 4px; }
 
-        /* QR Code Card */
-        .qr-card { background: linear-gradient(135deg, #fff, #fdf2f8); border-radius: 18px; padding: 20px; text-align: center; border: 2px dashed var(--pink-200); margin-bottom: 20px; }
-        .qr-box { width: 160px; height: 160px; background: white; margin: 15px auto; padding: 10px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .qr-box img { width: 100%; height: 100%; object-fit: contain; }
+        /* Join Group QR Code Style */
+        .group-qr-box { background: white; border-radius: 18px; padding: 20px; text-align: center; border: 2px dashed var(--pink-200); margin: 20px 0; }
+        .qr-img-wrapper { width: 140px; height: 140px; margin: 10px auto; border: 1px solid var(--pink-100); padding: 5px; border-radius: 10px; }
+        .qr-img-wrapper img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* Inputs & Choices */
+        .reminder { background: linear-gradient(135deg, #fff5f7, #fdf2ff); border-radius: 14px; padding: 18px 22px; margin: 18px 0; border-left: 4px solid var(--pink-400); }
+        .reminder h4 { font-family: 'Playfair Display', serif; color: var(--pink-600); font-size: 0.95rem; margin-bottom: 10px; }
+        .reminder ul { list-style: none; }
+        .reminder li { padding: 4px 0; font-size: 0.87rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .reminder li::before { content: '✓'; color: var(--pink-500); font-weight: 700; font-size: 0.8rem; }
+
         .fg { margin-bottom: 20px; }
-        .fi, .fs, .ft { width: 100%; padding: 13px 16px; border: 2px solid var(--lav-100); border-radius: 12px; font-family: inherit; outline: none; transition: var(--transition); }
-        .fi:focus { border-color: var(--pink-400); }
-        
-        /* Color Pills */
-        .color-pills { display: flex; gap: 10px; flex-wrap: wrap; }
-        .color-pill-label { padding: 10px 20px; border-radius: 50px; border: 2px solid var(--pink-100); cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-weight: 600; }
-        input[type="radio"]:checked + .color-pill-label { background: var(--pink-500); color: white; border-color: var(--pink-500); }
-        .swatch { width: 15px; height: 15px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+        .fg label { display: block; font-weight: 600; font-size: 0.87rem; margin-bottom: 7px; letter-spacing: 0.2px; }
+        .fi, .fs, .ft { width: 100%; padding: 13px 16px; border: 2px solid rgba(233, 213, 255, 0.45); border-radius: 12px; font-family: 'Quicksand', sans-serif; font-size: 0.93rem; color: var(--text-dark); background: rgba(255, 255, 255, 0.65); outline: none; transition: var(--transition); }
+        .fi:focus, .fs:focus, .ft:focus { border-color: var(--pink-400); background: var(--white); box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.08); }
 
-        /* Buttons */
+        .cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+        .cb-label { display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-radius: 12px; border: 2px solid rgba(233, 213, 255, 0.35); background: rgba(255, 255, 255, 0.45); cursor: pointer; transition: var(--transition); font-size: 0.82rem; font-weight: 500; }
+        input[type="checkbox"]:checked + .cb-label { border-color: var(--pink-400); background: linear-gradient(135deg, rgba(252, 231, 243, 0.75), rgba(243, 232, 255, 0.75)); color: var(--pink-600); }
+
+        .color-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .color-pill-label { display: flex; align-items: center; gap: 9px; padding: 12px 22px; border-radius: 50px; border: 2.5px solid rgba(233, 213, 255, 0.35); background: rgba(255, 255, 255, 0.55); cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: var(--transition); }
+        input[type="radio"]:checked + .color-pill-label { border-color: var(--pink-500); background: linear-gradient(135deg, rgba(252, 231, 243, 0.85), rgba(243, 232, 255, 0.85)); transform: scale(1.05); }
+        .swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.08); }
+
         .btns { display: flex; gap: 11px; margin-top: 28px; }
-        .btn { flex: 1; padding: 16px; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .btn-p { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); color: white; }
-        .btn-s { background: var(--pink-50); color: var(--text-muted); }
+        .btn { flex: 1; padding: 14px 22px; border: none; border-radius: 50px; font-family: 'Quicksand', sans-serif; font-size: 0.93rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 7px; }
+        .btn-p { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); color: white; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.28); }
+        .btn-s { background: rgba(255, 255, 255, 0.75); color: var(--text-muted); border: 2px solid rgba(233, 213, 255, 0.45); }
 
-        /* ================= USER TUTORIAL OVERLAY ================= */
-        .user-guide-overlay {
-            position: fixed; inset: 0; background: rgba(45, 27, 51, 0.9); z-index: 10000;
-            display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .guide-modal {
-            background: white; border-radius: 30px; width: 100%; max-width: 450px; padding: 40px 30px;
-            text-align: center; position: relative; overflow: hidden;
-        }
+        /* ================= USER GUIDE ANIMATION STYLES ================= */
+        .user-guide-overlay { position: fixed; inset: 0; background: rgba(45, 27, 51, 0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .guide-modal { background: white; border-radius: 30px; width: 100%; max-width: 450px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
         .guide-step { display: none; animation: slideIn 0.5s var(--ease); }
         .guide-step.active { display: block; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-
-        /* Animated Elements in Tutorial */
-        .demo-box { height: 120px; display: flex; align-items: center; justify-content: center; margin: 20px 0; background: var(--pink-50); border-radius: 20px; }
-        
+        .demo-box { height: 120px; display: flex; align-items: center; justify-content: center; margin: 20px 0; background: var(--pink-50); border-radius: 20px; position: relative; }
         .hand-cursor { position: absolute; font-size: 2rem; pointer-events: none; z-index: 10; transition: 0.5s ease-in-out; }
-
-        .demo-music { width: 200px; padding: 10px; border: 2px solid var(--pink-300); border-radius: 10px; background: white; text-align: left; position: relative; }
-        .demo-music::after { content: '▼'; position: absolute; right: 10px; color: var(--pink-300); }
-
-        .demo-pill { padding: 10px 20px; border-radius: 50px; border: 2px solid var(--pink-200); background: white; transition: 0.3s; }
+        .demo-music { width: 200px; padding: 12px; border: 2px solid var(--pink-300); border-radius: 12px; background: white; text-align: left; font-size: 0.9rem; }
+        .demo-pill { padding: 10px 20px; border-radius: 50px; border: 2px solid var(--pink-200); background: white; transition: 0.3s; font-size: 0.8rem; font-weight: 600; }
         .demo-pill.selected { background: var(--pink-500); color: white; border-color: var(--pink-500); transform: scale(1.1); }
-
         .demo-slider { width: 80%; height: 8px; background: #ddd; border-radius: 10px; position: relative; }
         .demo-thumb { width: 24px; height: 24px; background: white; border: 3px solid var(--pink-400); border-radius: 50%; position: absolute; top: -8px; left: 20%; transition: 0.5s; }
-
         .guide-btn { background: var(--pink-500); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; margin-top: 20px; cursor: pointer; }
 
         @media (max-width: 600px) {
+            .container { padding: 12px; }
+            .card { padding: 26px 20px; }
             .details-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 
 <body>
-    <!-- ================= USER JOURNEY TUTORIAL ================= -->
+    <!-- USER GUIDE OVERLAY -->
     <div class="user-guide-overlay" id="userGuide">
         <div class="guide-modal">
             <div class="hand-cursor" id="guideHand">👆</div>
-
-            <!-- Step 1: Music -->
             <div class="guide-step active" id="gStep1">
                 <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Pick Your Vibe 🎵</h3>
-                <p style="margin: 10px 0; color: #666;">Choose the music style that moves your soul!</p>
-                <div class="demo-box">
-                    <div class="demo-music" id="demoMusic">Select Music...</div>
-                </div>
+                <p style="margin: 10px 0; color: #666; font-size: 0.9rem;">Choose the music style that moves you!</p>
+                <div class="demo-box"><div class="demo-music" id="demoMusic">Select Music...</div></div>
                 <button class="guide-btn" onclick="nextGuide(2)">Next Tip</button>
             </div>
-
-            <!-- Step 2: Color -->
             <div class="guide-step" id="gStep2">
                 <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Dress the Part 👗</h3>
-                <p style="margin: 10px 0; color: #666;">Select your yoga pants color for the day.</p>
-                <div class="demo-box" style="gap: 10px;">
-                    <div class="demo-pill" id="demoPill1">Pink</div>
-                    <div class="demo-pill" id="demoPill2">Purple</div>
-                </div>
+                <p style="margin: 10px 0; color: #666; font-size: 0.9rem;">Select your yoga pants color.</p>
+                <div class="demo-box" style="gap: 10px;"><div class="demo-pill" id="demoPill1">Pink</div><div class="demo-pill" id="demoPill2">Purple</div></div>
                 <button class="guide-btn" onclick="nextGuide(3)">Almost there</button>
             </div>
-
-            <!-- Step 3: Wellness -->
             <div class="guide-step" id="gStep3">
                 <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Check In 🧘‍♀️</h3>
-                <p style="margin: 10px 0; color: #666;">Use the slider to tell us how you're feeling.</p>
-                <div class="demo-box">
-                    <div class="demo-slider">
-                        <div class="demo-thumb" id="demoThumb"></div>
-                    </div>
-                </div>
+                <p style="margin: 10px 0; color: #666; font-size: 0.9rem;">How are you feeling today?</p>
+                <div class="demo-box"><div class="demo-slider"><div class="demo-thumb" id="demoThumb"></div></div></div>
                 <button class="guide-btn" onclick="closeGuide()">Start My Journey 🌸</button>
             </div>
         </div>
@@ -166,9 +164,11 @@
         <header class="header">
             <p class="presenter-line">Pamora Space Presents</p>
             <h2 class="presenter-title">" Bloom &amp; Breathe "</h2>
-            <div class="header-emoji">🌸</div>
+            <div class="presenter-divider"></div>
+            <span class="header-emoji">🌸</span>
             <h1>Bloom &amp; Breathe</h1>
-            <p class="sub">Sanyang Wetlands · Friday, May 1, 2026</p>
+            <p class="tagline">Women's Wellness Retreat</p>
+            <p class="sub">Sanyang Wetlands · Friday, May 1, 2026 · 1:30 PM – 3:30 PM</p>
         </header>
 
         <div class="progress-bar" id="progressBar"></div>
@@ -177,78 +177,112 @@
             <form id="regForm">
                 <!-- STEP 0: WELCOME -->
                 <div class="step active" data-step="0">
-                    <h2 class="step-title" style="text-align:center;">Welcome, Beautiful</h2>
+                    <span class="step-emoji">✨</span>
+                    <h2 class="step-title">Welcome, Beautiful</h2>
+                    <p class="step-sub">A day of rest, renewal & reconnection awaits you.</p>
+
                     <div class="details-grid">
                         <div class="detail-card">
-                            <div style="font-size: 0.7rem; color: #999;">VENUE</div>
-                            <div style="font-weight:700;">Sanyang Wetlands</div>
-                            <span class="d-value-cn">文昌园观景塔</span>
+                            <span class="d-icon">📅</span>
+                            <div class="d-label">Date</div>
+                            <div class="d-value">Fri, May 1, 2026</div>
                         </div>
                         <div class="detail-card">
-                            <div style="font-size: 0.7rem; color: #999;">TICKET</div>
-                            <div style="font-weight:700;">¥50</div>
+                            <span class="d-icon">🕐</span>
+                            <div class="d-label">Time</div>
+                            <div class="d-value">1:30 PM – 3:30 PM</div>
+                        </div>
+                        <div class="detail-card">
+                            <span class="d-icon">📍</span>
+                            <div class="d-label">Venue</div>
+                            <div class="d-value">Sanyang Wetlands</div>
+                            <span class="cn-venue">文昌园观景塔</span>
+                        </div>
+                        <div class="detail-card">
+                            <span class="d-icon">🎫</span>
+                            <div class="d-label">Ticket</div>
+                            <div class="d-value">¥50</div>
                         </div>
                     </div>
 
-                    <!-- JOIN GROUP QR -->
-                    <div class="qr-card">
-                        <h4 style="color: var(--pink-600);">Join Our Community</h4>
-                        <p style="font-size: 0.8rem; color: #777;">Scan to join the retreat WeChat group</p>
-                        <div class="qr-box">
-                            <!-- REPLACE WITH YOUR ACTUAL GROUP QR -->
+                    <!-- GROUP QR CODE -->
+                    <div class="group-qr-box">
+                        <h4 style="color: var(--pink-600); font-family: 'Playfair Display';">Join the Retreat Group 💬</h4>
+                        <p style="font-size: 0.8rem; color: #777; margin-top: 5px;">Scan to connect with fellow attendees</p>
+                        <div class="qr-img-wrapper">
+                            <!-- ✅ Replace group-qr.png with your actual file -->
                             <img src="group-qr.png" alt="Group QR" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eee%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2210%22>Group QR</text></svg>'">
                         </div>
-                        <p style="font-size: 0.8rem; font-weight: 600; color: var(--pink-500);">Open WeChat → Scan to Join</p>
+                        <p style="font-size: 0.8rem; font-weight: 700; color: var(--pink-500);">Open WeChat → Scan to Join</p>
                     </div>
 
-                    <button type="button" class="btn btn-p" onclick="goNext()">Let's Register 🌷</button>
+                    <div class="reminder">
+                        <h4>🎒 Please Remember to Bring</h4>
+                        <ul>
+                            <li>Your own yoga mat</li>
+                            <li>Yoga pants (Pink, Purple, or White preferred)</li>
+                            <li>Water bottle & sunscreen</li>
+                        </ul>
+                    </div>
+                    <div class="btns"><button type="button" class="btn btn-p" onclick="goNext()">Let's Begin 🌷</button></div>
                 </div>
 
-                <!-- STEP 1: INFO -->
+                <!-- STEP 1: PERSONAL INFO -->
                 <div class="step" data-step="1">
+                    <span class="step-emoji">👤</span>
                     <h2 class="step-title">About You</h2>
                     <div class="fg"><label>Full Name *</label><input type="text" class="fi" required></div>
                     <div class="fg"><label>WeChat ID *</label><input type="text" class="fi" required></div>
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">Back</button>
-                        <button type="button" class="btn btn-p" onclick="goNext()">Next</button>
+                        <button type="button" class="btn btn-p" onclick="goNext()">Continue</button>
                     </div>
                 </div>
 
-                <!-- STEP 2: MUSIC & COLOR -->
+                <!-- STEP 2: STYLE & VIBE -->
                 <div class="step" data-step="2">
-                    <h2 class="step-title">Your Style</h2>
+                    <span class="step-emoji">👗</span>
+                    <h2 class="step-title">Your Style & Vibe</h2>
                     <div class="fg">
                         <label>Preferred Zumba Music</label>
                         <select class="fs" id="realMusicSelect">
-                            <option>Latin (Salsa, Reggaeton)</option>
-                            <option>Pop Hits</option>
+                            <option>Latin (Reggaeton, Salsa)</option>
                             <option>Afrobeats</option>
+                            <option>Pop Hits</option>
                             <option>Amapiano</option>
                         </select>
                     </div>
                     <div class="fg">
                         <label>Yoga Pants Color</label>
                         <div class="color-pills">
-                            <label><input type="radio" name="color" hidden><div class="color-pill-label"><div class="swatch" style="background:pink;"></div> Pink</div></label>
-                            <label><input type="radio" name="color" hidden><div class="color-pill-label"><div class="swatch" style="background:purple;"></div> Purple</div></label>
-                            <label><input type="radio" name="color" hidden><div class="color-pill-label"><div class="swatch" style="background:white;"></div> White</div></label>
+                            <label><input type="radio" name="color" hidden><div class="color-pill-label"><div class="swatch" style="background:#f9a8d4;"></div> Pink</div></label>
+                            <label><input type="radio" name="color" hidden><div class="color-pill-label"><div class="swatch" style="background:#c084fc;"></div> Purple</div></label>
                         </div>
                     </div>
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">Back</button>
-                        <button type="button" class="btn btn-p" onclick="goNext()">Next</button>
+                        <button type="button" class="btn btn-p" onclick="goNext()">Continue</button>
                     </div>
                 </div>
 
-                <!-- STEP 3: WELLNESS SLIDER -->
+                <!-- STEP 3: WELLNESS -->
                 <div class="step" data-step="3">
-                    <h2 class="step-title">Wellness Check-in</h2>
-                    <p style="margin-bottom:20px; color:#666;">How stressed are you feeling today?</p>
-                    <input type="range" class="fi" style="padding:0;" min="1" max="10">
+                    <span class="step-emoji">🧘‍♀️</span>
+                    <h2 class="step-title">Wellness Check-In</h2>
+                    <div class="fg">
+                        <label>Current Stress Level (1-10)</label>
+                        <input type="range" class="fi" style="padding:0;" min="1" max="10">
+                    </div>
+                    <div class="fg">
+                        <label>What do you hope to gain?</label>
+                        <div class="cb-grid">
+                            <label style="display:contents;"><input type="checkbox" hidden><div class="cb-label">Relaxation</div></label>
+                            <label style="display:contents;"><input type="checkbox" hidden><div class="cb-label">Fitness</div></label>
+                        </div>
+                    </div>
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">Back</button>
-                        <button type="button" class="btn btn-p" onclick="alert('Form ready for submission!')">Complete Registration 🌸</button>
+                        <button type="button" class="btn btn-p" onclick="alert('Submission logic would go here!')">Complete 🌸</button>
                     </div>
                 </div>
             </form>
@@ -256,13 +290,13 @@
     </div>
 
     <script>
-        // Tutorial Animation Logic
         const hand = document.getElementById('guideHand');
-        
+        let cur = 0;
+        const total = 4;
+
         function nextGuide(step) {
             document.querySelectorAll('.guide-step').forEach(s => s.classList.remove('active'));
             document.getElementById('gStep' + step).classList.add('active');
-
             if (step === 1) animateStep1();
             if (step === 2) animateStep2();
             if (step === 3) animateStep3();
@@ -270,10 +304,7 @@
 
         function animateStep1() {
             hand.style.top = '55%'; hand.style.left = '50%';
-            setTimeout(() => {
-                document.getElementById('demoMusic').textContent = "💃 Latin Vibe!";
-                document.getElementById('demoMusic').style.borderColor = "#ec4899";
-            }, 1000);
+            setTimeout(() => { document.getElementById('demoMusic').textContent = "💃 Latin Vibe!"; }, 1000);
         }
 
         function animateStep2() {
@@ -296,19 +327,7 @@
             }, 800);
         }
 
-        function closeGuide() {
-            document.getElementById('userGuide').style.display = 'none';
-        }
-
-        // Run animations on load
-        window.onload = () => {
-            animateStep1();
-            drawProgress();
-        };
-
-        // Standard Form Logic
-        let cur = 0;
-        const total = 4;
+        function closeGuide() { document.getElementById('userGuide').style.display = 'none'; }
 
         function drawProgress() {
             const bar = document.getElementById('progressBar');
@@ -333,6 +352,9 @@
             drawProgress();
             window.scrollTo(0,0);
         }
+
+        window.onload = () => { animateStep1(); drawProgress(); };
     </script>
 </body>
 </html>
+```
