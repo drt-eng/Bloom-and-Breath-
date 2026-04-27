@@ -11,175 +11,1059 @@
 
     <style>
         :root {
-            --pink-50: #fdf2f8; --pink-100: #fce7f3; --pink-200: #fbcfe8; --pink-300: #f9a8d4;
-            --pink-400: #f472b6; --pink-500: #ec4899; --pink-600: #db2777; --lav-50: #faf5ff;
-            --lav-100: #f3e8ff; --lav-200: #e9d5ff; --lav-300: #d8b4fe; --lav-400: #c084fc;
-            --lav-500: #a855f7; --text-dark: #2d1b33; --text-muted: #7c6c82; --text-light: #a89aae;
-            --white: #ffffff; --card-bg: rgba(255, 255, 255, 0.82); --shadow: 0 10px 40px rgba(183, 110, 121, 0.08);
-            --radius: 20px; --ease: cubic-bezier(0.4, 0, 0.2, 1); --transition: all 0.4s var(--ease);
+            --pink-50: #fdf2f8;
+            --pink-100: #fce7f3;
+            --pink-200: #fbcfe8;
+            --pink-300: #f9a8d4;
+            --pink-400: #f472b6;
+            --pink-500: #ec4899;
+            --pink-600: #db2777;
+            --lav-50: #faf5ff;
+            --lav-100: #f3e8ff;
+            --lav-200: #e9d5ff;
+            --lav-300: #d8b4fe;
+            --lav-400: #c084fc;
+            --lav-500: #a855f7;
+            --text-dark: #2d1b33;
+            --text-muted: #7c6c82;
+            --text-light: #a89aae;
+            --white: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --shadow: 0 10px 40px rgba(183, 110, 121, 0.08);
+            --radius: 20px;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s var(--ease);
         }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Quicksand', 'Noto Sans SC', sans-serif;
             background: linear-gradient(135deg, var(--pink-50) 0%, var(--lav-50) 40%, var(--pink-100) 100%);
-            min-height: 100vh; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Background Deco */
-        .bg-deco { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .bg-circle { position: absolute; border-radius: 50%; opacity: 0.12; animation: bgFloat 22s ease-in-out infinite; }
-        .bg-circle:nth-child(1) { width: 320px; height: 320px; background: var(--pink-300); top: -160px; right: -100px; }
-        .bg-circle:nth-child(2) { width: 220px; height: 220px; background: var(--lav-300); bottom: -110px; left: -60px; animation-delay: -6s; }
-        .bg-circle:nth-child(3) { width: 160px; height: 160px; background: var(--pink-200); top: 45%; right: -80px; animation-delay: -12s; }
-        .bg-circle:nth-child(4) { width: 260px; height: 260px; background: var(--lav-200); top: 25%; left: -130px; animation-delay: -17s; }
-        @keyframes bgFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 33% { transform: translateY(-18px) rotate(4deg); } 66% { transform: translateY(12px) rotate(-3deg); } }
+        .bg-deco {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
 
-        .petal { position: fixed; border-radius: 50% 0 50% 50%; opacity: 0; pointer-events: none; z-index: 0; animation: petalDrift linear infinite; }
-        @keyframes petalDrift { 0% { transform: translateY(-5vh) rotate(0deg) translateX(0); opacity: 0; } 8% { opacity: 0.25; } 92% { opacity: 0.25; } 100% { transform: translateY(105vh) rotate(540deg) translateX(80px); opacity: 0; } }
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.12;
+            animation: bgFloat 22s ease-in-out infinite;
+        }
 
-        .container { max-width: 660px; margin: 0 auto; padding: 16px; position: relative; z-index: 1; }
+        .bg-circle:nth-child(1) {
+            width: 320px; height: 320px;
+            background: var(--pink-300);
+            top: -160px; right: -100px;
+        }
 
-        .header { text-align: center; padding: 24px 16px 20px; }
-        .presenter-line { font-family: 'Dancing Script', cursive; font-size: 1.15rem; color: var(--text-muted); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
-        .presenter-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, var(--pink-500), var(--lav-500)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; line-height: 1.2; }
-        .presenter-divider { width: 80px; height: 3px; background: linear-gradient(90deg, var(--pink-300), var(--lav-400), var(--pink-300)); border-radius: 10px; margin: 10px auto 22px; }
+        .bg-circle:nth-child(2) {
+            width: 220px; height: 220px;
+            background: var(--lav-300);
+            bottom: -110px; left: -60px;
+            animation-delay: -6s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 160px; height: 160px;
+            background: var(--pink-200);
+            top: 45%; right: -80px;
+            animation-delay: -12s;
+        }
+
+        .bg-circle:nth-child(4) {
+            width: 260px; height: 260px;
+            background: var(--lav-200);
+            top: 25%; left: -130px;
+            animation-delay: -17s;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-18px) rotate(4deg); }
+            66% { transform: translateY(12px) rotate(-3deg); }
+        }
+
+        .petal {
+            position: fixed;
+            border-radius: 50% 0 50% 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+            animation: petalDrift linear infinite;
+        }
+
+        @keyframes petalDrift {
+            0%   { transform: translateY(-5vh) rotate(0deg) translateX(0); opacity: 0; }
+            8%   { opacity: 0.25; }
+            92%  { opacity: 0.25; }
+            100% { transform: translateY(105vh) rotate(540deg) translateX(80px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 24px 16px 20px;
+        }
+
+        /* --- PRESENTER STYLES --- */
+        .presenter-line {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .presenter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pink-500), var(--lav-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .presenter-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pink-300), var(--lav-400), var(--pink-300));
+            border-radius: 10px;
+            margin: 10px auto 22px;
+        }
+        /* ------------------------- */
+
         .header-emoji { font-size: 2.8rem; display: block; margin-bottom: 8px; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: 0.5px; }
-        .header .tagline { font-family: 'Dancing Script', cursive; font-size: 1.35rem; color: var(--pink-500); margin-top: 2px; }
-        .header .sub { font-size: 0.92rem; color: var(--text-muted); margin-top: 6px; }
 
-        /* Progress Bar */
-        .progress-bar { display: flex; justify-content: center; align-items: center; padding: 10px 0 26px; flex-wrap: wrap; gap: 0; }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .header .tagline {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.35rem;
+            color: var(--pink-500);
+            margin-top: 2px;
+        }
+
+        .header .sub {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0 26px;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
         .prog-step { display: flex; align-items: center; }
-        .prog-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--white); border: 2.5px solid var(--pink-200); display: grid; place-items: center; font-size: 0.72rem; color: var(--text-light); transition: var(--transition); flex-shrink: 0; }
-        .prog-dot.active { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); border-color: transparent; color: white; transform: scale(1.18); box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3); }
-        .prog-dot.done { background: var(--pink-400); border-color: transparent; color: white; }
-        .prog-line { width: 26px; height: 2.5px; background: var(--pink-200); transition: var(--transition); flex-shrink: 0; }
-        .prog-line.done { background: linear-gradient(90deg, var(--pink-400), var(--lav-400)); }
 
-        .card { background: var(--card-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.55); box-shadow: var(--shadow); padding: 38px 32px; margin-bottom: 28px; transition: var(--transition); }
-        .step { display: none; animation: fadeUp 0.45s var(--ease) forwards; }
+        .prog-dot {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2.5px solid var(--pink-200);
+            display: grid; place-items: center;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .prog-dot.active {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            border-color: transparent;
+            color: white;
+            transform: scale(1.18);
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
+        }
+
+        .prog-dot.done {
+            background: var(--pink-400);
+            border-color: transparent;
+            color: white;
+        }
+
+        .prog-line {
+            width: 26px; height: 2.5px;
+            background: var(--pink-200);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .prog-line.done {
+            background: linear-gradient(90deg, var(--pink-400), var(--lav-400));
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: var(--shadow);
+            padding: 38px 32px;
+            margin-bottom: 28px;
+            transition: var(--transition);
+        }
+
+        .step {
+            display: none;
+            animation: fadeUp 0.45s var(--ease) forwards;
+        }
+
         .step.active { display: block; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
         .step-emoji { font-size: 2.4rem; text-align: center; display: block; margin-bottom: 8px; }
-        .step-title { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 600; text-align: center; margin-bottom: 4px; }
-        .step-sub { text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 28px; }
 
-        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0; }
-        .detail-card { background: linear-gradient(135deg, rgba(252, 231, 243, 0.65), rgba(243, 232, 255, 0.65)); border-radius: 14px; padding: 18px 14px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.7); }
+        .step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .step-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 28px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 22px 0;
+        }
+
+        .detail-card {
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.65), rgba(243, 232, 255, 0.65));
+            border-radius: 14px;
+            padding: 18px 14px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
         .detail-card .d-icon { font-size: 1.4rem; display: block; margin-bottom: 6px; }
         .detail-card .d-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
         .detail-card .d-value { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.97rem; }
-        .cn-venue { font-family: 'Noto Sans SC', sans-serif; display: block; font-size: 0.85rem; color: var(--pink-600); margin-top: 4px; }
+        
+        /* CHINESE VENUE TEXT STYLE */
+        .detail-card .d-value-cn { 
+            font-family: 'Noto Sans SC', sans-serif; 
+            font-weight: 500; 
+            font-size: 0.88rem; 
+            color: var(--pink-600);
+            margin-top: 3px;
+            display: block;
+        }
 
-        /* Group QR Section */
-        .group-qr-card { background: white; border-radius: 18px; padding: 20px; text-align: center; border: 2px dashed var(--pink-200); margin: 20px 0; }
-        .qr-wrapper { width: 150px; height: 150px; background: #fafafa; margin: 10px auto; border-radius: 12px; border: 1px solid var(--pink-100); padding: 5px; }
-        .qr-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+        .detail-card.full-width {
+            grid-column: 1 / -1;
+        }
 
-        .reminder { background: linear-gradient(135deg, #fff5f7, #fdf2ff); border-radius: 14px; padding: 18px 22px; margin: 18px 0; border-left: 4px solid var(--pink-400); }
-        .reminder h4 { font-family: 'Playfair Display', serif; color: var(--pink-600); font-size: 0.95rem; margin-bottom: 10px; }
+        /* GROUP QR CODE SECTION */
+        .group-qr-section {
+            margin: 22px 0;
+            text-align: center;
+        }
+
+        .group-qr-card {
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.55), rgba(243, 232, 255, 0.55));
+            border-radius: 18px;
+            padding: 28px 22px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-qr-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--pink-300), var(--lav-300), var(--pink-300));
+            z-index: -1;
+            opacity: 0.5;
+            animation: shimmerBorder 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmerBorder {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .group-qr-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .group-qr-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .group-qr-box {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 16px;
+            margin: 0 auto 14px;
+            display: grid;
+            place-items: center;
+            border: 2px dashed var(--pink-200);
+            padding: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .group-qr-box:hover {
+            border-color: var(--pink-400);
+            transform: scale(1.03);
+            box-shadow: 0 8px 28px rgba(236, 72, 153, 0.15);
+        }
+
+        .group-qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .group-qr-box .qr-placeholder-text {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            padding: 14px;
+            line-height: 1.5;
+        }
+
+        .group-qr-hint {
+            font-size: 0.82rem;
+            color: var(--pink-500);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .group-qr-hint .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink-400);
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.6); opacity: 0.5; }
+        }
+
+        .group-qr-note {
+            font-size: 0.76rem;
+            color: var(--text-light);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* INTERACTIVE TOUR GUIDE */
+        .tour-guide {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+        }
+
+        .tour-guide.visible {
+            opacity: 1;
+        }
+
+        .tour-bubble {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            max-width: 220px;
+        }
+
+        .tour-bubble::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 8px 8px 0;
+            border-style: solid;
+            border-color: transparent var(--text-dark) transparent transparent;
+        }
+
+        .tour-hand {
+            font-size: 1.4rem;
+            line-height: 1;
+            animation: waveHand 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes waveHand {
+            0% { transform: rotate(-10deg) translateX(-2px); }
+            100% { transform: rotate(10deg) translateX(2px); }
+        }
+
+        .tour-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            background: var(--pink-500);
+            border-radius: 50%;
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            pointer-events: auto;
+        }
+
+        /* ORIGINAL STYLES CONTINUE */
+        .reminder {
+            background: linear-gradient(135deg, #fff5f7, #fdf2ff);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            border-left: 4px solid var(--pink-400);
+        }
+
+        .reminder h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--pink-600);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
         .reminder ul { list-style: none; }
-        .reminder li { padding: 4px 0; font-size: 0.87rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
-        .reminder li::before { content: '✓'; color: var(--pink-500); font-weight: 700; font-size: 0.8rem; }
+
+        .reminder li {
+            padding: 4px 0;
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reminder li::before {
+            content: '✓';
+            color: var(--pink-500);
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
 
         .fg { margin-bottom: 20px; }
-        .fg label { display: block; font-weight: 600; font-size: 0.87rem; margin-bottom: 7px; letter-spacing: 0.2px; }
+
+        .fg label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.87rem;
+            margin-bottom: 7px;
+            letter-spacing: 0.2px;
+        }
+
         .fg label .req { color: var(--pink-500); }
-        .fi, .fs, .ft { width: 100%; padding: 13px 16px; border: 2px solid rgba(233, 213, 255, 0.45); border-radius: 12px; font-family: inherit; font-size: 0.93rem; color: var(--text-dark); background: rgba(255, 255, 255, 0.65); transition: var(--transition); outline: none; }
-        .fi:focus, .fs:focus, .ft:focus { border-color: var(--pink-400); background: var(--white); box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.08); }
+
+        .fi, .fs, .ft {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid rgba(233, 213, 255, 0.45);
+            border-radius: 12px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.93rem;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.65);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .fi:focus, .fs:focus, .ft:focus {
+            border-color: var(--pink-400);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.08);
+        }
+
+        .fi::placeholder, .ft::placeholder {
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
         .ft { resize: vertical; min-height: 90px; }
 
-        .cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-        .cb-label { display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-radius: 12px; border: 2px solid rgba(233, 213, 255, 0.35); background: rgba(255, 255, 255, 0.45); cursor: pointer; transition: var(--transition); font-size: 0.82rem; font-weight: 500; }
-        input[type="checkbox"]:checked + .cb-label { border-color: var(--pink-400); background: linear-gradient(135deg, rgba(252, 231, 243, 0.75), rgba(243, 232, 255, 0.75)); color: var(--pink-600); }
-        .cb-box { width: 19px; height: 19px; border-radius: 5px; border: 2px solid var(--pink-200); display: grid; place-items: center; font-size: 0; transition: var(--transition); }
-        input[type="checkbox"]:checked + .cb-label .cb-box { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); border-color: transparent; color: white; font-size: 0.65rem; }
+        .fs {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a89aae' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            cursor: pointer;
+        }
 
-        .color-pills { display: flex; flex-wrap: wrap; gap: 10px; }
-        .color-pill-label { display: flex; align-items: center; gap: 9px; padding: 12px 22px; border-radius: 50px; border: 2.5px solid rgba(233, 213, 255, 0.35); background: rgba(255, 255, 255, 0.55); cursor: pointer; transition: var(--transition); font-size: 0.88rem; font-weight: 600; }
-        input[type="radio"]:checked + .color-pill-label { border-color: var(--pink-500); background: linear-gradient(135deg, rgba(252, 231, 243, 0.85), rgba(243, 232, 255, 0.85)); transform: scale(1.05); }
-        .swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.08); }
+        .fi.err, .fs.err, .ft.err {
+            border-color: #f87171;
+            background: rgba(254, 242, 242, 0.45);
+        }
+
+        .tip {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pink-200), transparent);
+            margin: 24px 0;
+        }
+
+        .cb-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .cb-item { position: relative; }
+
+        .cb-item input { position: absolute; opacity: 0; pointer-events: none; }
+
+        .cb-label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            border: 2px solid rgba(233, 213, 255, 0.35);
+            background: rgba(255, 255, 255, 0.45);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.82rem;
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .cb-label:hover {
+            border-color: var(--pink-300);
+            background: rgba(252, 231, 243, 0.45);
+        }
+
+        .cb-item input:checked + .cb-label {
+            border-color: var(--pink-400);
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.75), rgba(243, 232, 255, 0.75));
+            color: var(--pink-600);
+        }
+
+        .cb-box {
+            width: 19px; height: 19px;
+            border-radius: 5px;
+            border: 2px solid var(--pink-200);
+            display: grid; place-items: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            font-size: 0;
+            line-height: 1;
+        }
+
+        .cb-item input:checked + .cb-label .cb-box {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            border-color: transparent;
+            color: white;
+            font-size: 0.65rem;
+        }
+
+        .radio-group { display: flex; flex-wrap: wrap; gap: 9px; }
+        .radio-item  { position: relative; }
+        .radio-item input { position: absolute; opacity: 0; pointer-events: none; }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 50px;
+            border: 2px solid rgba(233, 213, 255, 0.35);
+            background: rgba(255, 255, 255, 0.45);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.84rem;
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .radio-item input:checked + .radio-label {
+            border-color: var(--pink-400);
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            color: white;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.22);
+        }
+
+        /* COLOR SWATCH PILLS */
+        .color-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+        .color-pill  { position: relative; }
+        .color-pill input { position: absolute; opacity: 0; pointer-events: none; }
+
+        .color-pill-label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 22px;
+            border-radius: 50px;
+            border: 2.5px solid rgba(233, 213, 255, 0.35);
+            background: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.88rem;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .color-pill-label:hover {
+            border-color: var(--pink-300);
+            transform: translateY(-1px);
+        }
+
+        .color-pill input:checked + .color-pill-label {
+            border-color: var(--pink-500);
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.85), rgba(243, 232, 255, 0.85));
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.2);
+            transform: scale(1.05);
+        }
+
+        .swatch {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .swatch-pink   { background: #f9a8d4; }
+        .swatch-purple { background: #c084fc; }
+        .swatch-white  { background: #ffffff; border-color: #ddd; }
+
+        .black-note {
+            background: linear-gradient(135deg, rgba(45, 27, 51, 0.06), rgba(45, 27, 51, 0.03));
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-top: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .black-note .bn-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+        .black-note strong { color: var(--text-dark); }
 
         .slider-wrap { padding: 16px 0; }
+
         .slider-display { text-align: center; margin-bottom: 18px; }
-        .slider-emoji { font-size: 2.8rem; display: block; margin-bottom: 4px; }
-        .slider-val { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; }
-        .stress-range { -webkit-appearance: none; width: 100%; height: 8px; border-radius: 10px; background: linear-gradient(90deg, #86efac, #fde047, #fca5a5, #f87171); outline: none; }
-        .stress-range::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: white; border: 3px solid var(--pink-400); cursor: pointer; }
+        .slider-emoji   { font-size: 2.8rem; display: block; margin-bottom: 4px; transition: var(--transition); }
+        .slider-val     { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; }
+        .slider-lbl     { font-size: 0.83rem; color: var(--text-muted); display: block; margin-top: 2px; }
 
-        .upload-zone { border: 2.5px dashed var(--pink-200); border-radius: 15px; padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); background: rgba(253, 242, 248, 0.25); position: relative; overflow: hidden; }
-        .pay-tab { padding: 10px 24px; border-radius: 50px; border: 2px solid var(--pink-200); background: rgba(255,255,255,0.6); cursor: pointer; font-weight: 600; font-size: 0.85rem; }
-        .pay-tab.active { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); border-color: transparent; color: white; }
+        .stress-range {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #86efac, #fde047, #fca5a5, #f87171);
+            outline: none;
+        }
 
-        .btns { display: flex; gap: 11px; margin-top: 28px; }
-        .btn { flex: 1; padding: 14px 22px; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 7px; }
-        .btn-p { background: linear-gradient(135deg, var(--pink-400), var(--lav-400)); color: white; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.28); }
-        .btn-s { background: rgba(255, 255, 255, 0.75); color: var(--text-muted); border: 2px solid rgba(233, 213, 255, 0.45); }
+        .stress-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--pink-400);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: var(--transition);
+        }
 
-        .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text-dark); color: white; padding: 14px 24px; border-radius: 50px; font-size: 0.83rem; transition: transform 0.35s var(--ease); z-index: 1000; }
-        .toast.show { transform: translateX(-50%) translateY(0); }
+        .stress-range::-webkit-slider-thumb:hover { transform: scale(1.18); }
 
-        /* ================= USER GUIDE ANIMATION STYLES ================= */
-        .user-guide-overlay { position: fixed; inset: 0; background: rgba(45, 27, 51, 0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .guide-modal { background: white; border-radius: 30px; width: 100%; max-width: 450px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-        .guide-step { display: none; animation: slideIn 0.5s var(--ease); }
-        .guide-step.active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-        .demo-box { height: 120px; display: flex; align-items: center; justify-content: center; margin: 20px 0; background: var(--pink-50); border-radius: 20px; position: relative; }
-        .hand-cursor { position: absolute; font-size: 2rem; pointer-events: none; z-index: 10; transition: 0.5s ease-in-out; }
-        .demo-music { width: 200px; padding: 12px; border: 2px solid var(--pink-300); border-radius: 12px; background: white; text-align: left; font-size: 0.9rem; }
-        .demo-pill { padding: 10px 20px; border-radius: 50px; border: 2px solid var(--pink-200); background: white; transition: 0.3s; font-size: 0.8rem; font-weight: 600; }
-        .demo-pill.selected { background: var(--pink-500); color: white; border-color: var(--pink-500); transform: scale(1.1); }
-        .demo-slider { width: 80%; height: 8px; background: #ddd; border-radius: 10px; position: relative; }
-        .demo-thumb { width: 24px; height: 24px; background: white; border: 3px solid var(--pink-400); border-radius: 50%; position: absolute; top: -8px; left: 20%; transition: 0.5s; }
-        .guide-btn { background: var(--pink-500); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; margin-top: 20px; cursor: pointer; }
+        .stress-range::-moz-range-thumb {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--pink-400);
+            cursor: pointer;
+        }
+
+        .slider-ends {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 7px;
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+
+        .upload-zone {
+            border: 2.5px dashed var(--pink-200);
+            border-radius: 15px;
+            padding: 28px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(253, 242, 248, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--pink-400);
+            background: rgba(252, 231, 243, 0.35);
+        }
+
+        .upload-zone.uploaded {
+            border-color: #86efac;
+            background: rgba(220, 252, 231, 0.15);
+            border-style: solid;
+        }
+
+        .upload-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .uz-icon { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+        .uz-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 4px; }
+        .uz-hint { font-size: 0.76rem; color: var(--text-light); }
+
+        .uz-preview {
+            max-width: 180px;
+            max-height: 140px;
+            border-radius: 10px;
+            margin-top: 14px;
+            display: none;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        }
+
+        .uz-filename {
+            font-size: 0.83rem;
+            color: var(--pink-600);
+            font-weight: 600;
+            margin-top: 8px;
+            display: none;
+        }
+
+        /* PAYMENT QR SECTION */
+        .pay-section { margin: 22px 0; }
+
+        .pay-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+
+        .pay-tab {
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 2px solid var(--pink-200);
+            background: rgba(255,255,255,0.6);
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            color: var(--text-muted);
+        }
+
+        .pay-tab:hover { border-color: var(--pink-300); }
+
+        .pay-tab.active {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.22);
+        }
+
+        .pay-qr {
+            text-align: center;
+            padding: 22px;
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.45), rgba(243, 232, 255, 0.45));
+            border-radius: 14px;
+        }
+
+        .pay-qr-panel { display: none; }
+        .pay-qr-panel.active { display: block; }
+
+        .pay-qr .qr-box {
+            width: 200px; height: 200px;
+            background: white;
+            border-radius: 14px;
+            margin: 14px auto;
+            display: grid; place-items: center;
+            border: 2px dashed var(--pink-200);
+            padding: 8px;
+            overflow: hidden;
+        }
+
+        .pay-qr .qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .pay-qr .qr-placeholder {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            padding: 14px;
+            line-height: 1.5;
+        }
+
+        .btns {
+            display: flex;
+            gap: 11px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.93rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-p {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            color: white;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.28);
+        }
+
+        .btn-p:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(236, 72, 153, 0.35);
+        }
+
+        .btn-s {
+            background: rgba(255, 255, 255, 0.75);
+            color: var(--text-muted);
+            border: 2px solid rgba(233, 213, 255, 0.45);
+        }
+
+        .btn-s:hover {
+            border-color: var(--pink-300);
+            color: var(--pink-500);
+        }
+
+        .btn:active { transform: scale(0.97); }
+
+        .spinner {
+            width: 22px; height: 22px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .success { text-align: center; padding: 16px 0; }
+
+        .success-icon {
+            font-size: 3.6rem;
+            display: block;
+            margin-bottom: 12px;
+            animation: popIn 0.5s var(--ease);
+        }
+
+        @keyframes popIn {
+            0%  { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.15); }
+            100%{ transform: scale(1); opacity: 1; }
+        }
+
+        .success h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+
+        .success p {
+            color: var(--text-muted);
+            font-size: 0.93rem;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-dark);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 0.83rem;
+            font-weight: 500;
+            z-index: 1000;
+            transition: transform 0.35s var(--ease);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+            white-space: nowrap;
+            max-width: 90vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 18px;
+            color: var(--text-light);
+            font-size: 0.78rem;
+        }
 
         @media (max-width: 600px) {
-            .details-grid { grid-template-columns: 1fr; }
+            .container { padding: 12px; }
+            .header h1 { font-size: 1.85rem; }
+            .presenter-title { font-size: 1.8rem; }
+            .card { padding: 26px 20px; border-radius: 16px; }
+            .details-grid { gap: 9px; }
+            .cb-grid { grid-template-columns: 1fr; }
+            .radio-group { flex-direction: column; }
+            .color-pills { flex-direction: column; }
+            .form-row { grid-template-columns: 1fr; }
+            .prog-line { width: 16px; }
+            .prog-dot  { width: 28px; height: 28px; font-size: 0.6rem; }
+            .btns { flex-direction: column-reverse; }
+            .step-title { font-size: 1.28rem; }
+            .pay-tabs { flex-direction: column; align-items: center; }
+            .group-qr-box { width: 180px; height: 180px; }
+            .tour-bubble::after {
+                left: 50%;
+                top: auto;
+                bottom: -8px;
+                transform: translateX(-50%) rotate(90deg);
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- USER GUIDE OVERLAY (Animated Tutorial) -->
-    <div class="user-guide-overlay" id="userGuide">
-        <div class="guide-modal">
-            <div class="hand-cursor" id="guideHand">👆</div>
-            <div class="guide-step active" id="gStep1">
-                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Pick Your Vibe 🎵</h3>
-                <p style="margin: 10px 0; color: #666; font-size: 0.9rem;">Choose the music style that moves you!</p>
-                <div class="demo-box"><div class="demo-music" id="demoMusic">Select Music...</div></div>
-                <button class="guide-btn" onclick="nextGuide(2)">Next Tip</button>
-            </div>
-            <div class="guide-step" id="gStep2">
-                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Dress the Part 👗</h3>
-                <p style="margin: 10px 0; color: #666; font-size: 0.9rem;">Select your yoga pants color.</p>
-                <div class="demo-box" style="gap: 10px;"><div class="demo-pill" id="demoPill1">Pink</div><div class="demo-pill" id="demoPill2">Purple</div></div>
-                <button class="guide-btn" onclick="nextGuide(3)">Almost there</button>
-            </div>
-            <div class="guide-step" id="gStep3">
-                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Check In 🧘‍♀️</h3>
-                <p style="margin: 10px 0; color: #666; font-size: 0.9rem;">How are you feeling today?</p>
-                <div class="demo-box"><div class="demo-slider"><div class="demo-thumb" id="demoThumb"></div></div></div>
-                <button class="guide-btn" onclick="closeGuide()">Start My Journey 🌸</button>
-            </div>
+    <div class="bg-deco">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <!-- TOUR GUIDE ELEMENT -->
+    <div id="tourGuide" class="tour-guide">
+        <div class="tour-bubble">
+            <span class="tour-hand">👉</span>
+            <span id="tourText">Hello there!</span>
+            <div class="tour-close" onclick="endTour()">✕</div>
         </div>
     </div>
 
-    <div class="bg-deco">
-        <div class="bg-circle"></div><div class="bg-circle"></div><div class="bg-circle"></div><div class="bg-circle"></div>
-    </div>
     <div class="toast" id="toast"></div>
 
     <div class="container">
+
         <header class="header">
+            <!-- ✅ PRESENTER BANNER -->
             <p class="presenter-line">Pamora Space Presents</p>
             <h2 class="presenter-title">" Bloom &amp; Breathe "</h2>
             <div class="presenter-divider"></div>
+            
             <span class="header-emoji">🌸</span>
             <h1>Bloom &amp; Breathe</h1>
             <p class="tagline">Women's Wellness Retreat</p>
@@ -191,11 +1075,11 @@
         <div class="card">
             <form id="regForm" enctype="multipart/form-data">
 
-                <!-- STEP 0: WELCOME -->
+                <!-- ===================== STEP 0 : WELCOME ===================== -->
                 <div class="step active" data-step="0">
                     <span class="step-emoji">✨</span>
                     <h2 class="step-title">Welcome, Beautiful</h2>
-                    <p class="step-sub">A day of rest, renewal & reconnection awaits you.</p>
+                    <p class="step-sub">A day of rest, renewal &amp; reconnection awaits you.</p>
 
                     <div class="details-grid">
                         <div class="detail-card">
@@ -212,7 +1096,8 @@
                             <span class="d-icon">📍</span>
                             <div class="d-label">Venue</div>
                             <div class="d-value">Sanyang Wetlands</div>
-                            <span class="cn-venue">文昌园观景塔</span>
+                            <!-- CHINESE VENUE NAME ADDED HERE -->
+                            <span class="d-value-cn">文昌园观景塔</span>
                         </div>
                         <div class="detail-card">
                             <span class="d-icon">🎫</span>
@@ -221,15 +1106,22 @@
                         </div>
                     </div>
 
-                    <!-- JOIN GROUP QR CODE -->
-                    <div class="group-qr-card">
-                        <h4 style="color: var(--pink-600); font-family: 'Playfair Display';">Join the Retreat Group 💬</h4>
-                        <p style="font-size: 0.8rem; color: #777; margin-top: 5px;">Scan to connect with fellow attendees</p>
-                        <div class="qr-wrapper">
-                            <!-- ✅ Replace group-qr.png with your file -->
-                            <img src="group-qr.png" alt="Group QR" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eee%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-size=%2210%22>Group QR</text></svg>'">
+                    <!-- GROUP QR CODE ADDED HERE -->
+                    <div class="group-qr-section" id="groupQrSection">
+                        <div class="group-qr-card">
+                            <div class="group-qr-title">💬 Join Our WeChat Group</div>
+                            <p class="group-qr-subtitle">Scan to connect with fellow attendees</p>
+                            <div class="group-qr-box" id="groupQrBox">
+                                <!-- ✅ REPLACE group-qr.png WITH YOUR ACTUAL GROUP QR IMAGE -->
+                                <img src="group-qr.png" alt="WeChat Group QR Code" 
+                                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'qr-placeholder-text\'>📱 Group QR Code<br><br><small>Replace <strong>group-qr.png</strong><br>with your WeChat group QR image</small></div>';">
+                            </div>
+                            <p class="group-qr-hint">
+                                <span class="pulse-dot"></span>
+                                Open WeChat → Scan to Join
+                            </p>
+                            <p class="group-qr-note">Join our community for event updates &amp; announcements</p>
                         </div>
-                        <p style="font-size: 0.8rem; font-weight: 700; color: var(--pink-500);">Open WeChat → Scan to Join</p>
                     </div>
 
                     <div class="reminder">
@@ -238,38 +1130,57 @@
                             <li>Your own yoga mat</li>
                             <li>Yoga pants (Pink, Purple, or White preferred)</li>
                             <li>A comfortable outfit for the day</li>
-                            <li>Water bottle & sunscreen</li>
+                            <li>Water bottle &amp; sunscreen</li>
                             <li>A heart ready to be refreshed 💕</li>
                         </ul>
                     </div>
-                    <div class="btns"><button type="button" class="btn btn-p" onclick="goNext()">Let's Begin 🌷</button></div>
+
+                    <div class="btns">
+                        <!-- ID ADDED FOR ANIMATION TARGETING -->
+                        <button type="button" id="letBeginBtn" class="btn btn-p" onclick="goNext()">Let's Begin 🌷</button>
+                    </div>
                 </div>
 
-                <!-- STEP 1: PERSONAL INFO -->
+                <!-- ===================== STEP 1 : PERSONAL INFO ===================== -->
                 <div class="step" data-step="1">
                     <span class="step-emoji">👤</span>
                     <h2 class="step-title">About You</h2>
                     <p class="step-sub">Tell us a little about yourself</p>
-                    <div class="fg"><label>Full Name <span class="req">*</span></label><input type="text" class="fi" name="full_name" placeholder="Your beautiful name" required></div>
-                    <div class="form-row">
-                        <div class="fg"><label>WeChat ID <span class="req">*</span></label><input type="text" class="fi" name="wechat_id" placeholder="Your WeChat ID" required></div>
-                        <div class="fg"><label>Phone Number</label><input type="tel" class="fi" name="phone" placeholder="+86 ..."></div>
+
+                    <div class="fg">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" class="fi" name="full_name" placeholder="Your beautiful name" required>
                     </div>
+
+                    <div class="form-row">
+                        <div class="fg">
+                            <label>WeChat ID <span class="req">*</span></label>
+                            <input type="text" class="fi" name="wechat_id" placeholder="Your WeChat ID" required>
+                        </div>
+                        <div class="fg">
+                            <label>Phone Number</label>
+                            <input type="tel" class="fi" name="phone" placeholder="+86 ...">
+                        </div>
+                    </div>
+
                     <div class="fg">
                         <label>Email Address</label>
                         <input type="email" class="fi" name="email" placeholder="your@email.com">
                         <p class="tip">Optional – we'll mainly contact you via WeChat</p>
                     </div>
+
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">← Back</button>
                         <button type="button" class="btn btn-p" onclick="goNext()">Continue →</button>
                     </div>
                 </div>
 
-                <!-- STEP 2: STYLE & VIBE -->
+                <!-- ===================== STEP 2 : STYLE & VIBE ===================== -->
                 <div class="step" data-step="2">
                     <span class="step-emoji">👗</span>
                     <h2 class="step-title">Your Style &amp; Vibe</h2>
+                    <p class="step-sub">Help us set the perfect mood for you</p>
+
                     <div class="fg">
                         <label>Preferred Zumba Music Type <span class="req">*</span></label>
                         <select class="fs" name="zumba_music" required>
@@ -279,172 +1190,608 @@
                             <option value="Pop">🎤 Pop Hits</option>
                             <option value="Bollywood">🪷 Bollywood</option>
                             <option value="Hip-Hop / R&B">🔥 Hip-Hop / R&B</option>
+                            <option value="Dancehall">🇯🇲 Dancehall</option>
+                            <option value="Amapiano">🎵 Amapiano</option>
+                            <option value="Mix of Everything">🎶 Mix of Everything</option>
                         </select>
                     </div>
+
                     <div class="fg">
                         <label>Colour of Your Yoga Pants <span class="req">*</span></label>
                         <div class="color-pills">
-                            <label><input type="radio" name="yoga_pants_color" value="Pink" hidden required><div class="color-pill-label"><div class="swatch swatch-pink"></div> Pink</div></label>
-                            <label><input type="radio" name="yoga_pants_color" value="Purple" hidden><div class="color-pill-label"><div class="swatch swatch-purple"></div> Purple</div></label>
-                            <label><input type="radio" name="yoga_pants_color" value="White" hidden><div class="color-pill-label"><div class="swatch swatch-white"></div> White</div></label>
+                            <div class="color-pill">
+                                <input type="radio" id="cpPink" name="yoga_pants_color" value="Pink" required>
+                                <label class="color-pill-label" for="cpPink">
+                                    <span class="swatch swatch-pink"></span> Pink
+                                </label>
+                            </div>
+                            <div class="color-pill">
+                                <input type="radio" id="cpPurple" name="yoga_pants_color" value="Purple">
+                                <label class="color-pill-label" for="cpPurple">
+                                    <span class="swatch swatch-purple"></span> Purple
+                                </label>
+                            </div>
+                            <div class="color-pill">
+                                <input type="radio" id="cpWhite" name="yoga_pants_color" value="White">
+                                <label class="color-pill-label" for="cpWhite">
+                                    <span class="swatch swatch-white"></span> White
+                                </label>
+                            </div>
+                        </div>
+                        <div class="black-note">
+                            <span class="bn-icon">🖤</span>
+                            <span>Don't have pink, purple, or white? No worries — <strong>black yoga pants</strong> are perfectly fine too!</span>
                         </div>
                     </div>
-                    <div class="fg"><label>What Do You Plan to Wear?</label><textarea class="ft" name="outfit_plan" placeholder="e.g. Pink yoga pants..."></textarea></div>
+
+                    <div class="fg">
+                        <label>What Do You Plan to Wear?</label>
+                        <textarea class="ft" name="outfit_plan" placeholder="e.g. Pink yoga pants with a white sports bra and white sneakers 👟" rows="3"></textarea>
+                    </div>
+
+                    <div class="reminder">
+                        <h4>💡 Style Tip</h4>
+                        <ul>
+                            <li>Wear comfortable, breathable clothing</li>
+                            <li>Pink, Purple, or White yoga pants preferred</li>
+                            <li>Black is also welcome if you don't have those colours</li>
+                            <li>Don't forget your yoga mat!</li>
+                        </ul>
+                    </div>
+
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">← Back</button>
                         <button type="button" class="btn btn-p" onclick="goNext()">Continue →</button>
                     </div>
                 </div>
 
-                <!-- STEP 3: WELLNESS -->
+                <!-- ===================== STEP 3 : WELLNESS ===================== -->
                 <div class="step" data-step="3">
                     <span class="step-emoji">🧘‍♀️</span>
                     <h2 class="step-title">Wellness Check-In</h2>
+                    <p class="step-sub">Let's understand where you are right now</p>
+
                     <div class="fg">
-                        <label>Stress Level</label>
+                        <label>How Would You Rate Your Current Stress Level?</label>
                         <div class="slider-wrap">
-                            <div class="slider-display"><span class="slider-emoji" id="sEmoji">😊</span><span class="slider-val" id="sVal">3</span></div>
+                            <div class="slider-display">
+                                <span class="slider-emoji" id="sEmoji">😊</span>
+                                <span class="slider-val" id="sVal">3</span>
+                                <span class="slider-lbl" id="sLbl">Mild stress</span>
+                            </div>
                             <input type="range" class="stress-range" name="stress_level" min="1" max="10" value="3" id="sRange">
+                            <div class="slider-ends">
+                                <span>1 – Zen 🧘</span>
+                                <span>10 – Very stressed 😰</span>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="divider"></div>
+
                     <div class="fg">
-                        <label>Goals</label>
+                        <label>What Do You Hope to Gain?</label>
                         <div class="cb-grid">
-                            <label><input type="checkbox" name="goals" value="Relaxation" hidden><div class="cb-label"><div class="cb-box">✓</div>Relaxation</div></label>
-                            <label><input type="checkbox" name="goals" value="Fitness" hidden><div class="cb-label"><div class="cb-box">✓</div>Fitness</div></label>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g1" name="goals" value="Relaxation">
+                                <label class="cb-label" for="g1"><span class="cb-box">✓</span>🌿 Relaxation</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g2" name="goals" value="Stress Relief">
+                                <label class="cb-label" for="g2"><span class="cb-box">✓</span>😮‍💨 Stress Relief</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g3" name="goals" value="Physical Fitness">
+                                <label class="cb-label" for="g3"><span class="cb-box">✓</span>💪 Physical Fitness</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g4" name="goals" value="Mental Clarity">
+                                <label class="cb-label" for="g4"><span class="cb-box">✓</span>🧠 Mental Clarity</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g5" name="goals" value="Networking">
+                                <label class="cb-label" for="g5"><span class="cb-box">✓</span>🤝 Networking</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g6" name="goals" value="Spiritual Growth">
+                                <label class="cb-label" for="g6"><span class="cb-box">✓</span>✨ Spiritual Growth</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g7" name="goals" value="Fun & Joy">
+                                <label class="cb-label" for="g7"><span class="cb-box">✓</span>🎉 Fun &amp; Joy</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="g8" name="goals" value="Self-Care Reset">
+                                <label class="cb-label" for="g8"><span class="cb-box">✓</span>🫶 Self-Care Reset</label>
+                            </div>
                         </div>
                     </div>
+
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">← Back</button>
                         <button type="button" class="btn btn-p" onclick="goNext()">Continue →</button>
                     </div>
                 </div>
 
-                <!-- STEP 4: ACTIVITIES & DIET -->
+                <!-- ===================== STEP 4 : ACTIVITIES & DIET ===================== -->
                 <div class="step" data-step="4">
                     <span class="step-emoji">🎯</span>
                     <h2 class="step-title">Activities &amp; Dietary Needs</h2>
+                    <p class="step-sub">Help us curate the best experience for you</p>
+
                     <div class="fg">
-                        <label>Interests</label>
+                        <label>Which Activities Interest You?</label>
                         <div class="cb-grid">
-                            <label><input type="checkbox" name="activities" value="Yoga" hidden><div class="cb-label"><div class="cb-box">✓</div>Yoga</div></label>
-                            <label><input type="checkbox" name="activities" value="Dance" hidden><div class="cb-label"><div class="cb-box">✓</div>Dance</div></label>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a1" name="activities" value="Yoga">
+                                <label class="cb-label" for="a1"><span class="cb-box">✓</span>🧘 Yoga</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a2" name="activities" value="Meditation">
+                                <label class="cb-label" for="a2"><span class="cb-box">✓</span>🕯️ Meditation</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a3" name="activities" value="Pilates">
+                                <label class="cb-label" for="a3"><span class="cb-box">✓</span>🏋️‍♀️ Pilates</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a4" name="activities" value="Zumba / Dance">
+                                <label class="cb-label" for="a4"><span class="cb-box">✓</span>💃 Zumba / Dance</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a5" name="activities" value="Journaling">
+                                <label class="cb-label" for="a5"><span class="cb-box">✓</span>📝 Journaling</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a6" name="activities" value="Nature Walks">
+                                <label class="cb-label" for="a6"><span class="cb-box">✓</span>🌳 Nature Walks</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a7" name="activities" value="Sound Healing">
+                                <label class="cb-label" for="a7"><span class="cb-box">✓</span>🔔 Sound Healing</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="a8" name="activities" value="Group Discussion">
+                                <label class="cb-label" for="a8"><span class="cb-box">✓</span>💬 Group Chat</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="fg"><label>Notes</label><textarea class="ft" name="allergies" placeholder="Allergies..."></textarea></div>
+
+                    <div class="divider"></div>
+
+                    <div class="fg">
+                        <label>Dietary Preferences</label>
+                        <div class="cb-grid">
+                            <div class="cb-item">
+                                <input type="checkbox" id="d1" name="dietary" value="No Restrictions">
+                                <label class="cb-label" for="d1"><span class="cb-box">✓</span>🍽️ No Restrictions</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="d2" name="dietary" value="Vegetarian">
+                                <label class="cb-label" for="d2"><span class="cb-box">✓</span>🥬 Vegetarian</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="d3" name="dietary" value="Vegan">
+                                <label class="cb-label" for="d3"><span class="cb-box">✓</span>🌱 Vegan</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="d4" name="dietary" value="Halal">
+                                <label class="cb-label" for="d4"><span class="cb-box">✓</span>🍖 Halal</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="d5" name="dietary" value="Gluten-Free">
+                                <label class="cb-label" for="d5"><span class="cb-box">✓</span>🌾 Gluten-Free</label>
+                            </div>
+                            <div class="cb-item">
+                                <input type="checkbox" id="d6" name="dietary" value="Kosher">
+                                <label class="cb-label" for="d6"><span class="cb-box">✓</span>✡️ Kosher</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fg">
+                        <label>Food Allergies or Special Dietary Notes</label>
+                        <textarea class="ft" name="allergies" placeholder="Please list any allergies or specific dietary needs..." rows="3"></textarea>
+                    </div>
+
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">← Back</button>
                         <button type="button" class="btn btn-p" onclick="goNext()">Continue →</button>
                     </div>
                 </div>
 
-                <!-- STEP 5: PAYMENT -->
+                <!-- ===================== STEP 5 : PAYMENT ===================== -->
                 <div class="step" data-step="5">
                     <span class="step-emoji">💳</span>
                     <h2 class="step-title">Payment</h2>
-                    <div class="pay-section">
-                        <div class="pay-tabs" style="display:flex; justify-content:center; gap:10px; margin-bottom:10px;">
-                            <button type="button" class="pay-tab active" onclick="showPayTab('wechat', this)">WeChat</button>
-                            <button type="button" class="pay-tab" onclick="showPayTab('alipay', this)">Alipay</button>
-                        </div>
-                        <div class="pay-qr pay-qr-panel active" id="qr-wechat" style="text-align:center;">
-                            <div class="qr-box" style="width:150px; height:150px; margin:auto; background:#eee;">WeChat QR</div>
+                    <p class="step-sub">Secure your spot — ¥50 per ticket</p>
+
+                    <div class="fg">
+                        <label>Payment Method <span class="req">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="pw" name="payment_method" value="WeChat Pay" required>
+                                <label class="radio-label" for="pw">💚 WeChat Pay</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="pa" name="payment_method" value="Alipay">
+                                <label class="radio-label" for="pa">💙 Alipay</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="fg"><label>Upload Screenshot</label><input type="file" class="fi" name="payment_screenshot" required></div>
+
+                    <!-- PAYMENT QR CODES WITH TABS -->
+                    <div class="pay-section">
+                        <div class="pay-tabs">
+                            <button type="button" class="pay-tab active" onclick="showPayTab('wechat', this)">💚 WeChat Pay</button>
+                            <button type="button" class="pay-tab" onclick="showPayTab('alipay', this)">💙 Alipay</button>
+                        </div>
+
+                        <!-- WeChat Pay QR -->
+                        <div class="pay-qr pay-qr-panel active" id="qr-wechat">
+                            <p style="font-weight:600;margin-bottom:4px;">💚 WeChat Pay — Scan to Pay ¥50</p>
+                            <p style="font-size:0.82rem;color:var(--text-muted);">Open WeChat → Scan the QR code below</p>
+                            <div class="qr-box">
+                                <!-- REPLACE THIS WITH YOUR IMAGE -->
+                                <img src="wechat-qr.png" alt="WeChat Pay QR Code">
+                            </div>
+                            <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">Amount: <strong>¥50.00</strong></p>
+                        </div>
+
+                        <!-- Alipay QR -->
+                        <div class="pay-qr pay-qr-panel" id="qr-alipay">
+                            <p style="font-weight:600;margin-bottom:4px;">💙 Alipay — Scan to Pay ¥50</p>
+                            <p style="font-size:0.82rem;color:var(--text-muted);">Open Alipay → Scan the QR code below</p>
+                            <div class="qr-box">
+                                <!-- REPLACE THIS WITH YOUR IMAGE -->
+                                <img src="alipay-qr.png" alt="Alipay QR Code">
+                            </div>
+                            <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">Amount: <strong>¥50.00</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="fg">
+                        <label>Upload Payment Screenshot <span class="req">*</span></label>
+                        <div class="upload-zone" id="uploadZone">
+                            <span class="uz-icon">📸</span>
+                            <p class="uz-text">Tap or drag to upload your screenshot</p>
+                            <p class="uz-hint">JPG, PNG or WEBP — max 5 MB</p>
+                            <input type="file" name="payment_screenshot" accept="image/*" id="fileIn" required>
+                            <img class="uz-preview" id="filePrev" alt="Preview">
+                            <p class="uz-filename" id="fileName"></p>
+                        </div>
+                    </div>
+
+                    <div class="fg">
+                        <label>Transaction Reference / Note</label>
+                        <input type="text" class="fi" name="transaction_ref" placeholder="Optional: paste your transaction ID">
+                    </div>
+
                     <div class="btns">
                         <button type="button" class="btn btn-s" onclick="goPrev()">← Back</button>
-                        <button type="button" class="btn btn-p" onclick="submitForm()">Submit 🌸</button>
+                        <button type="button" class="btn btn-p" id="subBtn" onclick="submitForm()">
+                            <span id="subTxt">Submit Registration 🌸</span>
+                            <div class="spinner" id="subSpin"></div>
+                        </button>
                     </div>
                 </div>
 
-                <!-- STEP 6: SUCCESS -->
+                <!-- ===================== STEP 6 : SUCCESS ===================== -->
                 <div class="step" data-step="6">
-                    <div class="success" style="text-align:center;">
-                        <span class="success-icon" style="font-size:3rem;">🌸</span>
-                        <h2>You're All Set!</h2>
-                        <p>We'll confirm your spot on WeChat soon.</p>
-                        <button type="button" class="btn btn-p" onclick="location.reload()" style="margin:auto; margin-top:20px;">Register Another</button>
+                    <div class="success">
+                        <span class="success-icon">🌸</span>
+                        <h2>You're All Set, Queen!</h2>
+                        <p>
+                            Your registration for <strong>Bloom &amp; Breathe</strong> has been received! 🎉<br><br>
+                            We'll confirm your spot via WeChat within 24–48 hours.<br>
+                            Start getting excited! ✨
+                        </p>
+
+                        <div class="reminder" style="text-align:left;">
+                            <h4>📋 Quick Recap</h4>
+                            <ul>
+                                <li>📅 Friday, May 1, 2026</li>
+                                <li>🕐 1:30 PM – 3:30 PM</li>
+                                <li>📍 Sanyang Wetlands</li>
+                                <li>🧘 Bring your yoga mat</li>
+                                <li>👖 Pink, Purple, or White yoga pants (or Black)</li>
+                                <li>💧 Bring water &amp; sunscreen</li>
+                                <li>💕 Bring your beautiful self!</li>
+                            </ul>
+                        </div>
+
+                        <div class="btns" style="justify-content:center;margin-top:28px;">
+                            <button type="button" class="btn btn-p" onclick="location.reload()" style="max-width:280px;">
+                                Register Another Person 🌷
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <input type="hidden" name="_subject" value="🌸 Retreat Registration">
+                <input type="hidden" name="_subject" value="🌸 New Wellness Retreat Registration!">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
             </form>
         </div>
+
+        <footer class="footer">
+            Made with 💕 for Bloom &amp; Breathe 2026<br>
+            <span style="margin-top:4px;display:inline-block;">Questions? Reach us on WeChat</span>
+        </footer>
     </div>
 
     <script>
-        const FORM_EMAIL = 'drtbmadzikatire@dingtalk.com';
-        const hand = document.getElementById('guideHand');
-        let cur = 0;
+    // ⚠️ REPLACE THIS WITH YOUR ACTUAL EMAIL
+    const FORM_EMAIL = 'drtbmadzikatire@dingtalk.com';
 
-        // Tutorial Logic
-        function nextGuide(step) {
-            document.querySelectorAll('.guide-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('gStep' + step).classList.add('active');
-            if (step === 1) animateStep1();
-            if (step === 2) animateStep2();
-            if (step === 3) animateStep3();
-        }
-        function animateStep1() {
-            hand.style.top = '55%'; hand.style.left = '50%';
-            setTimeout(() => { document.getElementById('demoMusic').textContent = "💃 Latin Vibe!"; }, 1000);
-        }
-        function animateStep2() {
-            hand.style.top = '55%'; hand.style.left = '35%';
-            setTimeout(() => {
-                document.getElementById('demoPill1').classList.add('selected');
-                hand.style.left = '60%';
-                setTimeout(() => {
-                    document.getElementById('demoPill1').classList.remove('selected');
-                    document.getElementById('demoPill2').classList.add('selected');
-                }, 800);
-            }, 500);
-        }
-        function animateStep3() {
-            hand.style.top = '53%'; hand.style.left = '25%';
-            setTimeout(() => {
-                document.getElementById('demoThumb').style.left = '70%';
-                hand.style.left = '70%';
-            }, 800);
-        }
-        function closeGuide() { document.getElementById('userGuide').style.display = 'none'; }
+    let cur = 0;
+    const TOTAL = 7;
+    const ICONS = ['🏠','👤','👗','🧘','🎯','💳','✅'];
 
-        // Form Logic
-        function drawProgress() {
-            const bar = document.getElementById('progressBar');
-            bar.innerHTML = '';
-            for(let i=0; i<7; i++){
-                const dot = document.createElement('div');
-                dot.className = `prog-dot ${i<cur?'done':i===cur?'active':''}`;
-                dot.textContent = i+1;
-                bar.appendChild(dot);
+    document.addEventListener('DOMContentLoaded', () => {
+        drawProgress();
+        initSlider();
+        initUpload();
+        spawnPetals();
+        
+        // START WELCOME TOUR ON PAGE LOAD
+        setTimeout(startWelcomeTour, 1500);
+    });
+
+    function drawProgress() {
+        const bar = document.getElementById('progressBar');
+        let h = '';
+        for (let i = 0; i < TOTAL; i++) {
+            const cls = i < cur ? 'done' : i === cur ? 'active' : '';
+            h += `<div class="prog-step"><div class="prog-dot ${cls}">${ICONS[i]}</div>`;
+            if (i < TOTAL - 1) h += `<div class="prog-line ${i < cur ? 'done' : ''}"></div>`;
+            h += `</div>`;
+        }
+        bar.innerHTML = h;
+    }
+
+    function goNext() {
+        if (!validate(cur)) return;
+        endTour(); // Stop tour when user navigates away
+        swap(cur, cur + 1);
+    }
+
+    function goPrev() { swap(cur, cur - 1); }
+
+    function swap(from, to) {
+        const steps = document.querySelectorAll('.step');
+        steps[from].classList.remove('active');
+        cur = to;
+        steps[cur].classList.add('active');
+        drawProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validate(step) {
+        const el = document.querySelectorAll('.step')[step];
+        let ok = true;
+
+        el.querySelectorAll('input[required]:not([type="radio"]):not([type="file"])').forEach(inp => {
+            if (!inp.value || !inp.value.trim()) {
+                inp.classList.add('err');
+                ok = false;
+                inp.addEventListener('input', () => inp.classList.remove('err'), { once: true });
+            } else {
+                inp.classList.remove('err');
+            }
+        });
+
+        el.querySelectorAll('select[required]').forEach(sel => {
+            if (!sel.value) {
+                sel.classList.add('err');
+                ok = false;
+                sel.addEventListener('change', () => sel.classList.remove('err'), { once: true });
+            } else {
+                sel.classList.remove('err');
+            }
+        });
+
+        // Check required radio groups in this step
+        if (step === 2) {
+            if (!el.querySelector('input[name="yoga_pants_color"]:checked')) {
+                toast('Please select your yoga pants colour 🎨');
+                ok = false;
             }
         }
-        function goNext() { cur++; update(); }
-        function goPrev() { cur--; update(); }
-        function update() {
-            document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i === cur));
-            drawProgress();
-            window.scrollTo(0,0);
-        }
-        function showPayTab(type, btn) {
-            document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
-            btn.classList.add('active');
-        }
 
-        window.onload = () => { animateStep1(); drawProgress(); spawnPetals(); };
-        function spawnPetals() {
-            for (let i = 0; i < 10; i++) {
-                const p = document.createElement('div');
-                p.className = 'petal';
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.background = '#f9a8d4';
-                p.style.width = '10px'; p.style.height = '10px';
-                p.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                document.body.appendChild(p);
+        if (step === 5) {
+            if (!el.querySelector('input[name="payment_method"]:checked')) {
+                toast('Please select a payment method 💳');
+                ok = false;
+            }
+            const f = document.getElementById('fileIn');
+            if (!f.files || !f.files.length) {
+                toast('Please upload your payment screenshot 📸');
+                ok = false;
             }
         }
+
+        if (!ok && step !== 5 && step !== 2) toast('Please fill in all required fields ✨');
+        return ok;
+    }
+
+    async function submitForm() {
+        if (!validate(cur)) return;
+
+        const btn  = document.getElementById('subBtn');
+        const txt  = document.getElementById('subTxt');
+        const spin = document.getElementById('subSpin');
+
+        btn.disabled = true;
+        txt.style.display = 'none';
+        spin.style.display = 'block';
+
+        const fd = new FormData(document.getElementById('regForm'));
+
+        ['goals','activities','dietary'].forEach(name => {
+            const vals = [];
+            document.querySelectorAll(`input[name="${name}"]:checked`).forEach(c => vals.push(c.value));
+            fd.delete(name);
+            fd.append(name, vals.join(', ') || 'None selected');
+        });
+
+        try {
+            const res = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
+                method: 'POST',
+                body: fd
+            });
+
+            if (res.ok) {
+                swap(cur, 6);
+            } else {
+                throw new Error('fail');
+            }
+        } catch (e) {
+            toast('Something went wrong — please try again 🙏');
+            btn.disabled = false;
+            txt.style.display = 'inline';
+            spin.style.display = 'none';
+        }
+    }
+
+    function initSlider() {
+        const r = document.getElementById('sRange');
+        const emojis = { 1:'😌',2:'😊',3:'🙂',4:'😐',5:'😕',6:'😟',7:'😣',8:'😫',9:'😰',10:'🤯' };
+        const labels = { 1:'Totally zen',2:'Pretty relaxed',3:'Mild stress',4:'Some tension',5:'Moderate stress',6:'Quite stressed',7:'High stress',8:'Very stressed',9:'Overwhelmed',10:'Maximum stress!' };
+        r.addEventListener('input', () => {
+            const v = +r.value;
+            document.getElementById('sEmoji').textContent = emojis[v];
+            document.getElementById('sVal').textContent   = v;
+            document.getElementById('sLbl').textContent    = labels[v];
+        });
+    }
+
+    function initUpload() {
+        const inp  = document.getElementById('fileIn');
+        const prev = document.getElementById('filePrev');
+        const name = document.getElementById('fileName');
+        const zone = document.getElementById('uploadZone');
+
+        inp.addEventListener('change', () => {
+            const file = inp.files[0];
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) {
+                toast('File too large — max 5 MB 📁');
+                inp.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = e => { prev.src = e.target.result; prev.style.display = 'inline-block'; };
+            reader.readAsDataURL(file);
+            name.textContent = '✅ ' + file.name;
+            name.style.display = 'block';
+            zone.classList.add('uploaded');
+            zone.querySelector('.uz-icon').textContent = '✅';
+            zone.querySelector('.uz-text').textContent = 'Screenshot uploaded!';
+        });
+    }
+
+    // Payment tab switching
+    function showPayTab(type, btn) {
+        document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.pay-qr-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('qr-' + type).classList.add('active');
+    }
+
+    function spawnPetals() {
+        const cols = ['#fce7f3','#f9a8d4','#e9d5ff','#d8b4fe','#fbcfe8'];
+        for (let i = 0; i < 14; i++) {
+            const p = document.createElement('div');
+            p.className = 'petal';
+            const s = 7 + Math.random() * 11;
+            Object.assign(p.style, {
+                left: Math.random() * 100 + 'vw',
+                width: s + 'px',
+                height: s + 'px',
+                background: cols[Math.floor(Math.random() * cols.length)],
+                animationDuration: (16 + Math.random() * 18) + 's',
+                animationDelay: (Math.random() * 22) + 's',
+                opacity: 0
+            });
+            document.body.appendChild(p);
+        }
+    }
+
+    function toast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    // ================= WELCOME TOUR ANIMATION =================
+    let tourTimeout;
+
+    function startWelcomeTour() {
+        const guide = document.getElementById('tourGuide');
+        const tourText = document.getElementById('tourText');
+        
+        const qrBox = document.getElementById('groupQrBox');
+        const beginBtn = document.getElementById('letBeginBtn');
+
+        // Define sequence for Step 0
+        const sequence = [
+            { 
+                el: qrBox, 
+                text: "📱 Scan here to join our group chat!", 
+            },
+            { 
+                el: beginBtn, 
+                text: "👇 Click here to start registration!", 
+            }
+        ];
+
+        let stepIndex = 0;
+
+        function showStep(index) {
+            if (index >= sequence.length) {
+                endTour();
+                return;
+            }
+
+            const step = sequence[index];
+            const rect = step.el.getBoundingClientRect();
+            
+            // Position Guide
+            // Adjust based on viewport to keep visible
+            let top = rect.top + (rect.height / 2);
+            let left = rect.right + 20; // Default to right side
+
+            // If mobile or too far right, position below
+            if (window.innerWidth < 600 || left > window.innerWidth - 250) {
+                left = rect.left;
+                top = rect.bottom + 20;
+            }
+
+            guide.style.transform = `translate(${left}px, ${top}px)`;
+            tourText.textContent = step.text;
+            guide.classList.add('visible');
+
+            // Wait then move to next
+            clearTimeout(tourTimeout);
+            tourTimeout = setTimeout(() => {
+                showStep(index + 1);
+            }, 3500); // 3.5 seconds per step
+        }
+
+        showStep(0);
+    }
+
+    function endTour() {
+        const guide = document.getElementById('tourGuide');
+        guide.classList.remove('visible');
+        clearTimeout(tourTimeout);
+    }
+
+    // Close tour when user interacts to avoid annoyance
+    document.getElementById('letBeginBtn').addEventListener('click', endTour);
+    document.getElementById('groupQrSection').addEventListener('click', endTour);
     </script>
 </body>
 </html>
