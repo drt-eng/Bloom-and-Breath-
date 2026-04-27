@@ -7,7 +7,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -42,7 +42,7 @@
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
+            font-family: 'Quicksand', 'Noto Sans SC', sans-serif;
             background: linear-gradient(135deg, var(--pink-50) 0%, var(--lav-50) 40%, var(--pink-100) 100%);
             min-height: 100vh;
             color: var(--text-dark);
@@ -127,7 +127,6 @@
             padding: 24px 16px 20px;
         }
 
-        /* --- PRESENTER STYLES --- */
         .presenter-line {
             font-family: 'Dancing Script', cursive;
             font-size: 1.15rem;
@@ -159,7 +158,6 @@
             border-radius: 10px;
             margin: 10px auto 22px;
         }
-        /* ------------------------- */
 
         .header-emoji { font-size: 2.8rem; display: block; margin-bottom: 8px; }
 
@@ -290,9 +288,130 @@
         .detail-card .d-icon { font-size: 1.4rem; display: block; margin-bottom: 6px; }
         .detail-card .d-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
         .detail-card .d-value { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.97rem; }
+        .detail-card .d-value-cn { 
+            font-family: 'Noto Sans SC', sans-serif; 
+            font-weight: 500; 
+            font-size: 0.88rem; 
+            color: var(--pink-600);
+            margin-top: 3px;
+            display: block;
+        }
 
         .detail-card.full-width {
             grid-column: 1 / -1;
+        }
+
+        /* GROUP QR CODE SECTION */
+        .group-qr-section {
+            margin: 22px 0;
+            text-align: center;
+        }
+
+        .group-qr-card {
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.55), rgba(243, 232, 255, 0.55));
+            border-radius: 18px;
+            padding: 28px 22px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-qr-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--pink-300), var(--lav-300), var(--pink-300));
+            z-index: -1;
+            opacity: 0.5;
+            animation: shimmerBorder 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmerBorder {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .group-qr-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .group-qr-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .group-qr-box {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 16px;
+            margin: 0 auto 14px;
+            display: grid;
+            place-items: center;
+            border: 2px dashed var(--pink-200);
+            padding: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .group-qr-box:hover {
+            border-color: var(--pink-400);
+            transform: scale(1.03);
+            box-shadow: 0 8px 28px rgba(236, 72, 153, 0.15);
+        }
+
+        .group-qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .group-qr-box .qr-placeholder-text {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            padding: 14px;
+            line-height: 1.5;
+        }
+
+        .group-qr-hint {
+            font-size: 0.82rem;
+            color: var(--pink-500);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .group-qr-hint .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink-400);
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.6); opacity: 0.5; }
+        }
+
+        .group-qr-note {
+            font-size: 0.76rem;
+            color: var(--text-light);
+            margin-top: 8px;
+            font-style: italic;
         }
 
         .reminder {
@@ -479,7 +598,6 @@
             box-shadow: 0 4px 14px rgba(236, 72, 153, 0.22);
         }
 
-        /* COLOR SWATCH PILLS */
         .color-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
         .color-pill  { position: relative; }
         .color-pill input { position: absolute; opacity: 0; pointer-events: none; }
@@ -635,7 +753,6 @@
             display: none;
         }
 
-        /* PAYMENT QR SECTION */
         .pay-section { margin: 22px 0; }
 
         .pay-tabs {
@@ -819,6 +936,275 @@
             font-size: 0.78rem;
         }
 
+        /* ================= SETUP TUTORIAL OVERLAY ================= */
+        .setup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 27, 51, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: overlayIn 0.5s var(--ease);
+        }
+
+        .setup-overlay.hiding {
+            animation: overlayOut 0.4s var(--ease) forwards;
+        }
+
+        @keyframes overlayIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes overlayOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .setup-modal {
+            background: var(--white);
+            border-radius: 24px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 36px 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlide 0.5s var(--ease);
+        }
+
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .setup-modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--pink-500), var(--lav-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .setup-modal .setup-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 24px;
+        }
+
+        .setup-step-list {
+            list-style: none;
+            margin: 0 0 24px;
+        }
+
+        .setup-step-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(233, 213, 255, 0.3);
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: stepSlideIn 0.5s var(--ease) forwards;
+        }
+
+        .setup-step-item:last-child { border-bottom: none; }
+
+        .setup-step-item:nth-child(1) { animation-delay: 0.2s; }
+        .setup-step-item:nth-child(2) { animation-delay: 0.4s; }
+        .setup-step-item:nth-child(3) { animation-delay: 0.6s; }
+        .setup-step-item:nth-child(4) { animation-delay: 0.8s; }
+        .setup-step-item:nth-child(5) { animation-delay: 1.0s; }
+
+        @keyframes stepSlideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .setup-step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .setup-step-content h4 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .setup-step-content p {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .setup-code-block {
+            background: linear-gradient(135deg, #1e1b2e, #2d1b33);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.78rem;
+            color: #f9a8d4;
+            position: relative;
+            overflow-x: auto;
+            word-break: break-all;
+            line-height: 1.6;
+        }
+
+        .setup-code-block .code-label {
+            display: block;
+            font-size: 0.68rem;
+            color: #a89aae;
+            margin-bottom: 6px;
+            font-family: 'Quicksand', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .setup-code-block .highlight {
+            color: #86efac;
+            font-weight: 700;
+        }
+
+        .setup-code-block .comment {
+            color: #7c6c82;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #f472b6;
+            margin-left: 2px;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .setup-demo-url {
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.6), rgba(243, 232, 255, 0.6));
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .setup-demo-url .url-parts {
+            font-family: 'Courier New', monospace;
+            font-size: 0.82rem;
+            word-break: break-all;
+        }
+
+        .setup-demo-url .url-fixed {
+            color: var(--text-muted);
+        }
+
+        .setup-demo-url .url-email {
+            color: var(--pink-600);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .setup-demo-url .url-email.animating::after {
+            content: '';
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: var(--pink-500);
+            margin-left: 1px;
+            animation: blink 0.7s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        .setup-warning {
+            background: linear-gradient(135deg, #fef3c7, #fef9c3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.82rem;
+            color: #92400e;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .setup-warning .warn-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+        .setup-btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .setup-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .setup-btn-primary {
+            background: linear-gradient(135deg, var(--pink-400), var(--lav-400));
+            color: white;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.28);
+        }
+
+        .setup-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(236, 72, 153, 0.35);
+        }
+
+        .setup-btn-ghost {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-muted);
+            border: 2px solid var(--pink-200);
+        }
+
+        .setup-btn-ghost:hover {
+            border-color: var(--pink-400);
+            color: var(--pink-500);
+        }
+
+        /* Animated file/image tutorial */
+        .setup-file-note {
+            background: linear-gradient(135deg, rgba(134, 239, 172, 0.15), rgba(134, 239, 172, 0.05));
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            font-size: 0.82rem;
+            color: #166534;
+            border: 1px solid rgba(134, 239, 172, 0.3);
+        }
+
         @media (max-width: 600px) {
             .container { padding: 12px; }
             .header h1 { font-size: 1.85rem; }
@@ -834,11 +1220,93 @@
             .btns { flex-direction: column-reverse; }
             .step-title { font-size: 1.28rem; }
             .pay-tabs { flex-direction: column; align-items: center; }
+            .setup-modal { padding: 26px 20px; }
+            .setup-modal h2 { font-size: 1.35rem; }
+            .group-qr-box { width: 180px; height: 180px; }
         }
     </style>
 </head>
 
 <body>
+    <!-- =================== SETUP TUTORIAL OVERLAY =================== -->
+    <div class="setup-overlay" id="setupOverlay">
+        <div class="setup-modal">
+            <h2>⚙️ Quick Setup Guide</h2>
+            <p class="setup-sub">Follow these steps to connect this form to your email</p>
+
+            <ol class="setup-step-list">
+                <li class="setup-step-item">
+                    <div class="setup-step-num">1</div>
+                    <div class="setup-step-content">
+                        <h4>🔍 Find the Email Variable</h4>
+                        <p>Open this HTML file in a code editor. Look for this line near the bottom in the <code>&lt;script&gt;</code> section:</p>
+                        <div class="setup-code-block">
+                            <span class="code-label">📄 Line to find:</span>
+                            <span class="comment">// ⚠️ REPLACE THIS WITH YOUR ACTUAL EMAIL</span><br>
+                            const FORM_EMAIL = '<span class="highlight" id="typingEmail"></span><span class="typing-cursor"></span>';
+                        </div>
+                    </div>
+                </li>
+
+                <li class="setup-step-item">
+                    <div class="setup-step-num">2</div>
+                    <div class="setup-step-content">
+                        <h4>✏️ Replace with Your Email</h4>
+                        <p>Change the email to the address where you want to receive registrations:</p>
+                        <div class="setup-demo-url">
+                            <div class="url-parts">
+                                <span class="url-fixed">const FORM_EMAIL = '</span><span class="url-email" id="demoEmail">your@email.com</span><span class="url-fixed">';</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="setup-step-item">
+                    <div class="setup-step-num">3</div>
+                    <div class="setup-step-content">
+                        <h4>📸 Add Your QR Code Images</h4>
+                        <p>Replace the placeholder images with your actual payment QR codes:</p>
+                        <div class="setup-code-block">
+                            <span class="code-label">📄 Payment QR files needed:</span>
+                            <span class="highlight">wechat-qr.png</span> <span class="comment">← Your WeChat Pay QR</span><br>
+                            <span class="highlight">alipay-qr.png</span> <span class="comment">← Your Alipay QR</span><br>
+                            <span class="highlight">group-qr.png</span> <span class="comment">← Your Group Chat QR</span>
+                        </div>
+                        <div class="setup-file-note">
+                            💡 Place these image files in the <strong>same folder</strong> as this HTML file. Or use full URLs like <code>https://your-site.com/qr.png</code>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="setup-step-item">
+                    <div class="setup-step-num">4</div>
+                    <div class="setup-step-content">
+                        <h4>📧 Confirm Your Email</h4>
+                        <p>The first time someone submits the form, <strong>FormSubmit.co</strong> will send a confirmation email to your address. Click the link to activate.</p>
+                    </div>
+                </li>
+
+                <li class="setup-step-item">
+                    <div class="setup-step-num">5</div>
+                    <div class="setup-step-content">
+                        <h4>🚀 You're Live!</h4>
+                        <p>After confirmation, all registrations will arrive directly in your inbox with a beautiful table layout. Share your page link!</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="setup-warning">
+                <span class="warn-icon">⚠️</span>
+                <span>This tutorial will only show <strong>once</strong>. You can re-enable it by clearing <code>localStorage</code> in your browser, or by removing the <code>setupDone</code> key.</span>
+            </div>
+
+            <div class="setup-btn-row">
+                <button class="setup-btn setup-btn-ghost" onclick="skipSetup()">Skip for Now</button>
+                <button class="setup-btn setup-btn-primary" onclick="dismissSetup()">Got It, Let's Go! 🌸</button>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-deco">
         <div class="bg-circle"></div>
         <div class="bg-circle"></div>
@@ -851,7 +1319,6 @@
     <div class="container">
 
         <header class="header">
-            <!-- ✅ PRESENTER BANNER -->
             <p class="presenter-line">Pamora Space Presents</p>
             <h2 class="presenter-title">" Bloom &amp; Breathe "</h2>
             <div class="presenter-divider"></div>
@@ -888,11 +1355,30 @@
                             <span class="d-icon">📍</span>
                             <div class="d-label">Venue</div>
                             <div class="d-value">Sanyang Wetlands</div>
+                            <span class="d-value-cn">文昌园观景塔</span>
                         </div>
                         <div class="detail-card">
                             <span class="d-icon">🎫</span>
                             <div class="d-label">Ticket</div>
                             <div class="d-value">¥50</div>
+                        </div>
+                    </div>
+
+                    <!-- GROUP QR CODE TO JOIN -->
+                    <div class="group-qr-section">
+                        <div class="group-qr-card">
+                            <div class="group-qr-title">💬 Join Our WeChat Group</div>
+                            <p class="group-qr-subtitle">Scan to connect with fellow attendees</p>
+                            <div class="group-qr-box">
+                                <!-- ✅ REPLACE group-qr.png WITH YOUR ACTUAL GROUP QR IMAGE -->
+                                <img src="group-qr.png" alt="WeChat Group QR Code" 
+                                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'qr-placeholder-text\'>📱 Group QR Code<br><br><small>Replace <strong>group-qr.png</strong><br>with your WeChat group QR image</small></div>';">
+                            </div>
+                            <p class="group-qr-hint">
+                                <span class="pulse-dot"></span>
+                                Open WeChat → Scan to Join
+                            </p>
+                            <p class="group-qr-note">Join our community for event updates &amp; announcements</p>
                         </div>
                     </div>
 
@@ -1191,30 +1677,25 @@
                         </div>
                     </div>
 
-                    <!-- PAYMENT QR CODES WITH TABS -->
                     <div class="pay-section">
                         <div class="pay-tabs">
                             <button type="button" class="pay-tab active" onclick="showPayTab('wechat', this)">💚 WeChat Pay</button>
                             <button type="button" class="pay-tab" onclick="showPayTab('alipay', this)">💙 Alipay</button>
                         </div>
 
-                        <!-- WeChat Pay QR -->
                         <div class="pay-qr pay-qr-panel active" id="qr-wechat">
                             <p style="font-weight:600;margin-bottom:4px;">💚 WeChat Pay — Scan to Pay ¥50</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">Open WeChat → Scan the QR code below</p>
                             <div class="qr-box">
-                                <!-- REPLACE THIS WITH YOUR IMAGE -->
                                 <img src="wechat-qr.png" alt="WeChat Pay QR Code">
                             </div>
                             <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">Amount: <strong>¥50.00</strong></p>
                         </div>
 
-                        <!-- Alipay QR -->
                         <div class="pay-qr pay-qr-panel" id="qr-alipay">
                             <p style="font-weight:600;margin-bottom:4px;">💙 Alipay — Scan to Pay ¥50</p>
                             <p style="font-size:0.82rem;color:var(--text-muted);">Open Alipay → Scan the QR code below</p>
                             <div class="qr-box">
-                                <!-- REPLACE THIS WITH YOUR IMAGE -->
                                 <img src="alipay-qr.png" alt="Alipay QR Code">
                             </div>
                             <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">Amount: <strong>¥50.00</strong></p>
@@ -1263,12 +1744,28 @@
                             <ul>
                                 <li>📅 Friday, May 1, 2026</li>
                                 <li>🕐 1:30 PM – 3:30 PM</li>
-                                <li>📍 Sanyang Wetlands</li>
+                                <li>📍 Sanyang Wetlands · 文昌园观景塔</li>
                                 <li>🧘 Bring your yoga mat</li>
                                 <li>👖 Pink, Purple, or White yoga pants (or Black)</li>
                                 <li>💧 Bring water &amp; sunscreen</li>
                                 <li>💕 Bring your beautiful self!</li>
                             </ul>
+                        </div>
+
+                        <!-- Group QR in success page too -->
+                        <div class="group-qr-section" style="margin-top:22px;">
+                            <div class="group-qr-card">
+                                <div class="group-qr-title">💬 Don't Forget to Join Our Group!</div>
+                                <p class="group-qr-subtitle">Stay connected with fellow attendees</p>
+                                <div class="group-qr-box">
+                                    <img src="group-qr.png" alt="WeChat Group QR Code"
+                                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'qr-placeholder-text\'>📱 Group QR Code<br><br><small>Replace <strong>group-qr.png</strong><br>with your WeChat group QR image</small></div>';">
+                                </div>
+                                <p class="group-qr-hint">
+                                    <span class="pulse-dot"></span>
+                                    Scan to Join Our WeChat Group
+                                </p>
+                            </div>
                         </div>
 
                         <div class="btns" style="justify-content:center;margin-top:28px;">
@@ -1300,12 +1797,103 @@
     const ICONS = ['🏠','👤','👗','🧘','🎯','💳','✅'];
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Check if setup tutorial was already shown
+        if (localStorage.getItem('bloomSetupDone')) {
+            document.getElementById('setupOverlay').remove();
+        } else {
+            runSetupAnimations();
+        }
+
         drawProgress();
         initSlider();
         initUpload();
         spawnPetals();
     });
 
+    // ================= SETUP TUTORIAL FUNCTIONS =================
+    function runSetupAnimations() {
+        // Typing animation for email in code block
+        const emailEl = document.getElementById('typingEmail');
+        const emailText = 'your-email@example.com';
+        let charIndex = 0;
+
+        setTimeout(() => {
+            const typeInterval = setInterval(() => {
+                if (charIndex < emailText.length) {
+                    emailEl.textContent += emailText[charIndex];
+                    charIndex++;
+                } else {
+                    clearInterval(typeInterval);
+                    // After typing finishes, animate the demo URL
+                    setTimeout(animateDemoEmail, 800);
+                }
+            }, 65);
+        }, 1200);
+    }
+
+    function animateDemoEmail() {
+        const demoEl = document.getElementById('demoEmail');
+        if (!demoEl) return;
+
+        const emails = [
+            'your@email.com',
+            'jane@gmail.com',
+            'wellness@company.cn',
+            'you@yourmail.com'
+        ];
+        let emailIdx = 0;
+
+        demoEl.classList.add('animating');
+
+        function cycleEmail() {
+            emailIdx = (emailIdx + 1) % emails.length;
+            demoEl.textContent = '';
+            const target = emails[emailIdx];
+            let ci = 0;
+
+            const typeIt = setInterval(() => {
+                if (ci < target.length) {
+                    demoEl.textContent += target[ci];
+                    ci++;
+                } else {
+                    clearInterval(typeIt);
+                    if (emailIdx < emails.length - 1) {
+                        setTimeout(() => {
+                            // Delete effect
+                            const delIt = setInterval(() => {
+                                const t = demoEl.textContent;
+                                if (t.length > 0) {
+                                    demoEl.textContent = t.slice(0, -1);
+                                } else {
+                                    clearInterval(delIt);
+                                    setTimeout(cycleEmail, 300);
+                                }
+                            }, 35);
+                        }, 1500);
+                    } else {
+                        demoEl.classList.remove('animating');
+                    }
+                }
+            }, 55);
+        }
+
+        setTimeout(cycleEmail, 1000);
+    }
+
+    function dismissSetup() {
+        localStorage.setItem('bloomSetupDone', 'true');
+        const overlay = document.getElementById('setupOverlay');
+        overlay.classList.add('hiding');
+        setTimeout(() => overlay.remove(), 400);
+    }
+
+    function skipSetup() {
+        const overlay = document.getElementById('setupOverlay');
+        overlay.classList.add('hiding');
+        setTimeout(() => overlay.remove(), 400);
+    }
+
+    // ================= FORM FUNCTIONS =================
     function drawProgress() {
         const bar = document.getElementById('progressBar');
         let h = '';
@@ -1358,7 +1946,6 @@
             }
         });
 
-        // Check required radio groups in this step
         if (step === 2) {
             if (!el.querySelector('input[name="yoga_pants_color"]:checked')) {
                 toast('Please select your yoga pants colour 🎨');
@@ -1458,7 +2045,6 @@
         });
     }
 
-    // Payment tab switching
     function showPayTab(type, btn) {
         document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.pay-qr-panel').forEach(p => p.classList.remove('active'));
